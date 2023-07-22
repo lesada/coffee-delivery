@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\laure\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add -D @typescript-eslint
+  C:\Program Files\nodejs\node.exe C:\Users\laure\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @expo-google-fonts/baloo2
 
 PATH: 
   C:\Program Files\WindowsApps\Microsoft.PowerShell_7.3.6.0_x64__8wekyb3d8bbwe;C:\Program Files\Microsoft\jdk-11.0.18.10-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\nodejs\;C:\Users\laure\AppData\Local\Microsoft\WindowsApps;C:\Users\laure\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\laure\AppData\Local\Programs\oh-my-posh\bin;C:\Users\laure\AppData\Local\Android\Sdk\platform-tools;C:\Users\laure\AppData\Roaming\npm
@@ -14,8 +14,8 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@typescript-eslint: Request "https://registry.yarnpkg.com/@typescript-eslint" returned a 405
-      at params.callback [as _callback] (C:\Users\laure\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66154:18)
+  Error: https://registry.yarnpkg.com/@expo-google-fonts%2fbaloo2: Not found
+      at params.callback [as _callback] (C:\Users\laure\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66145:18)
       at self.callback (C:\Users\laure\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
       at Request.emit (node:events:513:28)
       at Request.<anonymous> (C:\Users\laure\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141862:10)
@@ -39,7 +39,9 @@ npm manifest:
       "lint": "eslint ."
     },
     "dependencies": {
+      "@expo-google-fonts/roboto": "^0.2.3",
       "expo": "~48.0.18",
+      "expo-font": "~11.1.1",
       "expo-status-bar": "~1.4.4",
       "react": "18.2.0",
       "react-native": "0.71.8",
@@ -1330,6 +1332,11 @@ Lockfile:
     version "8.44.0"
     resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.44.0.tgz#961a5903c74139390478bdc808bcde3fc45ab7af"
     integrity sha512-Ag+9YM4ocKQx9AarydN0KY2j0ErMHNIocPDrVo8zAE44xLTjEtz81OdR68/cydGtk6m6jDb5Za3r2useMzYmSw==
+  
+  "@expo-google-fonts/roboto@^0.2.3":
+    version "0.2.3"
+    resolved "https://registry.yarnpkg.com/@expo-google-fonts/roboto/-/roboto-0.2.3.tgz#c103422a3c8f461aaada33acaf06418f6650dc19"
+    integrity sha512-PF6S//ZYWeXfpYTwvY2oEe0d5RnqwR5KMsGjuTgg6y9p/CPK/IkWL+wsbkzjfd+Jck1Q1pRlWOoe5uz42sQFRg==
   
   "@expo/bunyan@4.0.0", "@expo/bunyan@^4.0.0":
     version "4.0.0"

@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
@@ -25,42 +21,11 @@
     "noUnusedLocals": true,
     "noImplicitReturns": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/assets": [
-        "./src/assets"
-      ],
-      "@/components": [
-        "./src/components"
-      ],
-      "@/hooks": [
-        "./src/hooks"
-      ],
-      "@/routes": [
-        "./src/routes"
-      ],
-      "@/screens": [
-        "./src/screens"
-      ],
-      "@/themes": [
-        "./src/themes"
-      ],
-      "@/@types": [
-        "./src/@types"
-      ]
+      "@/*": ["./src/*"]
     },
-    "types": [
-      "@types/styled-components-react-native"
-    ]
+    "types": ["@types/styled-components-react-native"]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "babel.config.js"
-  ],
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "babel.config.js"],
   "extends": "expo/tsconfig.base"
 }
