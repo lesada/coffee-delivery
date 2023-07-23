@@ -1,10 +1,17 @@
-import { Text, View } from 'react-native';
+import DefaultLayout from '@/components/DefaultLayout';
+import Typography from '@/components/Typography';
+
+import { Background } from './styles';
 
 function Home() {
   return (
-    <View>
-      <Text>Hello world</Text>
-    </View>
+    <DefaultLayout>
+      <Background>
+        <Typography variant="title" size="extraLarge">
+          Hello world
+        </Typography>
+      </Background>
+    </DefaultLayout>
   );
 }
 
