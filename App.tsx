@@ -1,10 +1,13 @@
 import { Baloo2_500Medium } from '@expo-google-fonts/baloo-2';
 import { useFonts, Roboto_500Medium } from '@expo-google-fonts/roboto';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 
-import theme from './styles/theme';
+import Home from './src/pages/Home';
+
+import theme from './src/styles/theme';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -16,12 +19,16 @@ export default function App() {
     return null;
   }
 
+  const Stack = createNativeStackNavigator();
+
   return (
     <ThemeProvider theme={theme}>
-      <View>
-        <Text>Open up App.tsx to start working on your app!</Text>
+      <NavigationContainer>
         <StatusBar style="auto" />
-      </View>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
