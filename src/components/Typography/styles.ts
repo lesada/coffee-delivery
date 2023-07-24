@@ -23,5 +23,4 @@ export const Container = styled(Text)<TypographyProps>`
   color: ${({ theme }) => theme.colors.neutral[1000]};
   font-family: ${({ variant }) => (variant === 'title' ? 'Baloo' : 'Roboto')};
   font-size: ${({ variant, size }) => variants[variant][size]}px;
-  line-height: ${({ variant, size }) => variants[variant][size] * 1.3}px;
 `;

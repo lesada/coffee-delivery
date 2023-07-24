@@ -1,16 +1,21 @@
 import DefaultLayout from '@/components/DefaultLayout';
 import Typography from '@/components/Typography';
 
-import { Background } from './styles';
+import { Container, Search, SearchIcon, SearchInput } from './styles';
 
 function Home() {
   return (
     <DefaultLayout>
-      <Background>
-        <Typography variant="title" size="extraLarge">
-          Hello world
+      <Container>
+        <Typography variant="title" size="medium">
+          The perfect coffee for your taste in the palm of your hand
         </Typography>
-      </Background>
+
+        <Search>
+          <SearchIcon name="search" size={24} color="black" />
+          <SearchInput placeholder="Search" />
+        </Search>
+      </Container>
     </DefaultLayout>
   );
 }
