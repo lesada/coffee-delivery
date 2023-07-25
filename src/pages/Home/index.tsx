@@ -1,7 +1,10 @@
+import { Text, TouchableOpacity } from 'react-native';
+
 import DefaultLayout from '@/components/DefaultLayout';
+import Search from '@/components/Search';
 import Typography from '@/components/Typography';
 
-import { Container, Search, SearchIcon, SearchInput } from './styles';
+import { Container } from './styles';
 
 function Home() {
   return (
@@ -11,10 +14,10 @@ function Home() {
           The perfect coffee for your taste in the palm of your hand
         </Typography>
 
-        <Search>
-          <SearchIcon name="search" size={24} color="black" />
-          <SearchInput placeholder="Search" />
-        </Search>
+        <Search />
+        <TouchableOpacity>
+          <Text>A</Text>
+        </TouchableOpacity>
       </Container>
     </DefaultLayout>
   );
