@@ -1,4 +1,5 @@
-import Coffee from '../../assets/coffee.png';
+import Coffee from '@/assets/coffee.png';
+
 import Tag from '../Tag';
 import Typography from '../Typography';
 
