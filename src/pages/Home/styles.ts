@@ -17,6 +17,6 @@ export const Wrapper = styled(View)`
 `;
 
 export const Cart = styled(MaterialIcons)`
-  color: ${({ theme }) => theme.colors.secondary[200]};
+  color: ${({ theme }) => theme.colors.secondary[100]};
   font-size: 20px;
 `;

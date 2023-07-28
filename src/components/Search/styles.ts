@@ -1,5 +1,5 @@
 import { Feather } from '@expo/vector-icons';
-import { View, TextInput } from 'react-native';
+import { TextInput, View } from 'react-native';
 import styled from 'styled-components';
 
 interface IconProps {
@@ -35,5 +35,5 @@ export const Input = styled(TextInput).attrs(({ theme }) => ({
   color: ${({ theme }) => theme.colors.neutral[700]};
   font-weight: 400;
 
-  font-family: 'Roboto';
+  font-family: ${({ theme }) => theme.fonts.Roboto};
 `;

@@ -1,5 +1,9 @@
-import { Baloo2_500Medium } from '@expo-google-fonts/baloo-2';
-import { Roboto_500Medium, useFonts } from '@expo-google-fonts/roboto';
+import { Baloo2_500Medium, Baloo2_700Bold } from '@expo-google-fonts/baloo-2';
+import {
+  Roboto_500Medium,
+  Roboto_700Bold,
+  useFonts,
+} from '@expo-google-fonts/roboto';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
@@ -12,7 +16,9 @@ import theme from './src/styles/theme';
 export default function App() {
   const [fontsLoaded] = useFonts({
     Roboto: Roboto_500Medium,
+    RobotoBold: Roboto_700Bold,
     Baloo: Baloo2_500Medium,
+    BalooBold: Baloo2_700Bold,
   });
 
   if (!fontsLoaded) {

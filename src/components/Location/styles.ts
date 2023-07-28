@@ -22,5 +22,5 @@ export const Input = styled(TextInput).attrs(({ theme }) => ({
   line-height: 18px;
   color: ${({ theme }) => theme.colors.neutral[700]};
   font-weight: 400;
-  font-family: 'Roboto';
+  font-family: ${({ theme }) => theme.fonts.Roboto};
 `;

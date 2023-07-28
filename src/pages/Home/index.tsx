@@ -1,5 +1,6 @@
 import { TouchableOpacity } from 'react-native';
 
+import Card from '@/components/Card';
 import DefaultLayout from '@/components/DefaultLayout';
 import Location from '@/components/Location';
 import Search from '@/components/Search';
@@ -17,10 +18,11 @@ function Home() {
             <Cart name="shopping-cart" />
           </TouchableOpacity>
         </Wrapper>
-        <Typography variant="title" size="medium">
+        <Typography type="title" size="medium">
           The perfect coffee for your taste in the palm of your hand
         </Typography>
         <Search />
+        <Card />
       </Container>
     </DefaultLayout>
   );
