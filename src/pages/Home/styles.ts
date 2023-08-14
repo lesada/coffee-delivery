@@ -2,11 +2,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { View } from 'react-native';
 import styled from 'styled-components';
 
-export const Container = styled(View)`
-  flex: 1;
+export const Background = styled(View)`
   gap: 16px;
 
-  padding: 32px;
+  padding: ${({ theme }) => theme.containerPadding}px;
   background-color: ${({ theme }) => theme.colors.neutral[100]};
 `;
 
@@ -19,4 +18,9 @@ export const Wrapper = styled(View)`
 export const Cart = styled(MaterialIcons)`
   color: ${({ theme }) => theme.colors.secondary[100]};
   font-size: 20px;
+`;
+
+export const Carousel = styled(View)`
+  margin-top: -94px;
+  padding: 0 ${({ theme }) => theme.containerPadding}px;
 `;

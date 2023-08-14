@@ -7,6 +7,11 @@ interface IconProps {
 }
 
 export const Container = styled(View)`
+  align-items: flex-end;
+  width: 100%;
+`;
+
+export const Wrapper = styled(View)`
   flex-direction: row;
   align-items: center;
   gap: 8px;
@@ -14,6 +19,8 @@ export const Container = styled(View)`
   background-color: ${({ theme }) => theme.colors.neutral[200]};
   padding: 12px;
   border-radius: 8px;
+
+  width: 100%;
 `;
 
 export const Icon = styled(Feather)<IconProps>`

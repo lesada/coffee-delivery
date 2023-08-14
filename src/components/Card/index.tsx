@@ -1,4 +1,4 @@
-import Coffee from '@/assets/coffee.png';
+import { Images } from '@/assets';
 
 import Tag from '../Tag';
 import Typography from '../Typography';
@@ -8,7 +8,7 @@ import { Container, Info, Photo, Price } from './styles';
 function Card() {
   return (
     <Container>
-      <Photo source={Coffee} />
+      <Photo source={Images.Coffee} />
       <Tag variant="tertiary"> TRADICIONAL </Tag>
       <Info>
         <Typography

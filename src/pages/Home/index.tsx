@@ -6,12 +6,12 @@ import Location from '@/components/Location';
 import Search from '@/components/Search';
 import Typography from '@/components/Typography';
 
-import { Cart, Container, Wrapper } from './styles';
+import { Background, Carousel, Cart, Wrapper } from './styles';
 
 function Home() {
   return (
     <DefaultLayout>
-      <Container>
+      <Background>
         <Wrapper>
           <Location />
           <TouchableOpacity>
@@ -22,8 +22,10 @@ function Home() {
           The perfect coffee for your taste in the palm of your hand
         </Typography>
         <Search />
+      </Background>
+      <Carousel>
         <Card />
-      </Container>
+      </Carousel>
     </DefaultLayout>
   );
 }
