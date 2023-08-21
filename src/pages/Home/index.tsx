@@ -1,12 +1,12 @@
 import { TouchableOpacity } from 'react-native';
 
-import Card from '@/components/Card';
+import Carousel from '@/components/Carousel';
 import DefaultLayout from '@/components/DefaultLayout';
 import Location from '@/components/Location';
 import Search from '@/components/Search';
 import Typography from '@/components/Typography';
 
-import { Background, Carousel, Cart, Wrapper } from './styles';
+import { Background, Cart, Wrapper } from './styles';
 
 function Home() {
   return (
@@ -23,9 +23,7 @@ function Home() {
         </Typography>
         <Search />
       </Background>
-      <Carousel>
-        <Card />
-      </Carousel>
+      <Carousel />
     </DefaultLayout>
   );
 }

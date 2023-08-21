@@ -19,8 +19,3 @@ export const Cart = styled(MaterialIcons)`
   color: ${({ theme }) => theme.colors.secondary[100]};
   font-size: 20px;
 `;
-
-export const Carousel = styled(View)`
-  margin-top: -94px;
-  padding: 0 ${({ theme }) => theme.containerPadding}px;
-`;

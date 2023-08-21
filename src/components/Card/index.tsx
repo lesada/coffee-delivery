@@ -1,15 +1,23 @@
-import { Images } from '@/assets';
+import { ImageSourcePropType } from 'react-native';
 
 import Tag from '../Tag';
 import Typography from '../Typography';
 
 import { Container, Info, Photo, Price } from './styles';
 
-function Card() {
+type CardProps = {
+  image: ImageSourcePropType;
+  title: string;
+  type: string;
+  description: string;
+  price: string;
+};
+
+function Card({ image, title, type, description, price }: CardProps) {
   return (
     <Container>
-      <Photo source={Images.Coffee} />
-      <Tag variant="tertiary"> TRADICIONAL </Tag>
+      <Photo source={image} />
+      <Tag variant="tertiary"> {type.toUpperCase()} </Tag>
       <Info>
         <Typography
           size="medium"
@@ -19,7 +27,7 @@ function Card() {
           align="center"
           bold
         >
-          Latte
+          {title}
         </Typography>
         <Typography
           size="extraSmall"
@@ -28,7 +36,7 @@ function Card() {
           variation={400}
           align="center"
         >
-          Espresso with double the amount of milk and creamy foam
+          {description}
         </Typography>
       </Info>
       <Price>
@@ -47,7 +55,7 @@ function Card() {
           variation={100}
           bold
         >
-          9,90
+          {price}
         </Typography>
       </Price>
     </Container>
