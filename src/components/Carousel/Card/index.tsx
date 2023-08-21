@@ -1,7 +1,7 @@
 import { ImageSourcePropType } from 'react-native';
 
-import Tag from '../Tag';
-import Typography from '../Typography';
+import Tag from '../../Tag';
+import Typography from '../../Typography';
 
 import { Container, Info, Photo, Price } from './styles';
 

@@ -16,6 +16,8 @@ export const Container = styled(View)`
   margin-top: 32px;
 
   box-sizing: border-box;
+
+  margin: ${({ theme }) => theme.containerPadding}px;
 `;
 
 export const Photo = styled(Image)`
