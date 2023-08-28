@@ -1,9 +1,8 @@
 import { number, object, string } from "zod";
 
-export const coffeeSchema = object({
+export const CoffeeSchema = object({
   title: string(),
   description: string(),
   price: number(),
   type: string(),
-  image: string(),
 });

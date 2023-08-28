@@ -1,8 +1,8 @@
 import { FastifyInstance } from "fastify";
-import { createType } from "./createType";
-import { getTypes } from "./getTypes";
+import { CoffeesRoutes } from "./coffeesRoutes";
+import { TypesRoutes } from "./typesRoutes";
 
 export async function appRoutes(app: FastifyInstance) {
-  createType(app);
-  getTypes(app);
+  TypesRoutes(app);
+  CoffeesRoutes(app);
 }
