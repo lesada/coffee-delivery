@@ -15,7 +15,6 @@ function Carousel() {
 
   const fetchData = async () => {
     try {
-      console.log(API_BASE);
       const response = await axios.get(`${API_BASE}/coffees`);
       const firstFive = response.data.slice(0, 5);
       setData(firstFive);
