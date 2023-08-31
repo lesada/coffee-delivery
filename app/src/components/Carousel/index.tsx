@@ -1,43 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { API_BASE } from '@env';
+import axios from 'axios';
 import { Dimensions } from 'react-native';
 import List from 'react-native-anchor-carousel';
-
-import { Images } from '@/assets';
 
 import Card from './Card';
 
 import { Container } from './styles';
 
-const data = [
-  {
-    id: 1,
-    title: 'Café 1',
-    type: 'Tradicional',
-    image: Images.Coffee,
-    price: '5.99',
-    description: 'Café com leite',
-  },
-  {
-    id: 2,
-    title: 'Café 2',
-    type: 'Especial',
-    image: Images.Coffee,
-    price: '5.99',
-    description: 'Café sem leite',
-  },
-  {
-    id: 3,
-    title: 'Café 3',
-    type: 'Tradicional',
-    image: Images.Coffee,
-    price: '5.99',
-    description: 'Café sem leite',
-  },
-];
-
 function Carousel() {
+  const [data, setData] = useState([]);
   const { width: windowWidth } = Dimensions.get('window');
+
+  const fetchData = async () => {
+    try {
+      console.log(API_BASE);
+      const response = await axios.get(`${API_BASE}/coffees`);
+      const firstFive = response.data.slice(0, 5);
+      setData(firstFive);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <Container>

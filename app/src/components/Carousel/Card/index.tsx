@@ -14,6 +14,8 @@ type CardProps = {
 };
 
 function Card({ image, title, type, description, price }: CardProps) {
+  if (!type) type = 'coffee';
+
   return (
     <Container>
       <Photo source={image} />
