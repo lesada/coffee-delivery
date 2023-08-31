@@ -1,12 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { prisma } from "../lib/prisma";
 
-interface CreateCoffeeRequest {
-  title: string;
-  description: string;
-  price: number;
-  typeName: string;
-}
+import { CoffeeSchema } from "../schemas/coffee";
 
 interface UpdateCoffeeRequest {
   id: string;
@@ -14,13 +9,27 @@ interface UpdateCoffeeRequest {
 
 export async function CoffeesRoutes(app: FastifyInstance) {
   app.get("/coffees", async (req, res) => {
-    const coffees = await prisma.coffee.findMany();
-    return res.status(200).send(coffees);
+    const coffees = await prisma.coffee.findMany({
+      include: {
+        type: true,
+      },
+    });
+
+    const formattedCoffees = coffees.map((coffee) => ({
+      id: coffee.id,
+      title: coffee.title,
+      description: coffee.description,
+      price: coffee.price,
+      type: coffee.type.title,
+    }));
+
+    return res.status(200).send(formattedCoffees);
   });
 
   app.post("/coffees/new", async (req, res) => {
-    const { title, description, price, typeName } =
-      req.body as CreateCoffeeRequest;
+    const { title, description, price, typeName } = CoffeeSchema.parse(
+      req.body
+    );
 
     try {
       const existingType = await prisma.type.findUnique({
@@ -52,8 +61,9 @@ export async function CoffeesRoutes(app: FastifyInstance) {
 
   app.put("/coffees/:id", async (req, res) => {
     const { id } = req.params as UpdateCoffeeRequest;
-    const { title, description, price, typeName } =
-      req.body as CreateCoffeeRequest;
+    const { title, description, price, typeName } = CoffeeSchema.parse(
+      req.body
+    );
 
     try {
       const existingType = await prisma.type.findUnique({

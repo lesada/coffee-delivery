@@ -4,5 +4,5 @@ export const CoffeeSchema = object({
   title: string(),
   description: string(),
   price: number(),
-  type: string(),
+  typeName: string(),
 });
