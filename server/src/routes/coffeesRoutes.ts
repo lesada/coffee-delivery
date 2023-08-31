@@ -1,33 +1,15 @@
-import FastifyMultipart from "@fastify/multipart";
-import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
-import fs from "fs/promises";
-import { ZodError } from "zod";
+import { FastifyInstance } from "fastify";
 import { prisma } from "../lib/prisma";
-import { CoffeeSchema } from "../schemas/coffee";
 
-interface CoffeeRequestBody {
-  fields: string;
-  files: File[];
+interface CreateCoffeeRequest {
+  title: string;
+  description: string;
+  price: number;
+  typeName: string;
 }
 
-async function saveCoffeeImage(imageFile, title) {
-  const imagePath = `uploads/${title}.${imageFile.filename.split(".").pop()}`;
-  await fs.writeFile(imagePath, imageFile.data);
-  return imagePath;
-}
-
-async function createOrUpdateCoffeeType(type) {
-  let coffeeType = await prisma.type.findFirst({
-    where: { title: type },
-  });
-
-  if (!coffeeType) {
-    coffeeType = await prisma.type.create({
-      data: { title: type },
-    });
-  }
-
-  return coffeeType;
+interface UpdateCoffeeRequest {
+  id: string;
 }
 
 export async function CoffeesRoutes(app: FastifyInstance) {
@@ -36,35 +18,87 @@ export async function CoffeesRoutes(app: FastifyInstance) {
     return res.status(200).send(coffees);
   });
 
-  app.register(FastifyMultipart, { addToBody: true });
+  app.post("/coffees/new", async (req, res) => {
+    const { title, description, price, typeName } =
+      req.body as CreateCoffeeRequest;
 
-  app.post("/coffees/new", async (req: FastifyRequest, res: FastifyReply) => {
     try {
-      const { fields, files } = req.body as CoffeeRequestBody;
-      const { title, description, price, type } = JSON.parse(fields);
+      const existingType = await prisma.type.findUnique({
+        where: {
+          title: typeName,
+        },
+      });
 
-      CoffeeSchema.parse({ title, description, price, type });
+      if (!existingType) {
+        return res
+          .status(400)
+          .send({ error: "The coffee type informed does not exist." });
+      }
 
-      const imageFile = files[0];
-      const imagePath = await saveCoffeeImage(imageFile, title);
-      const coffeeType = await createOrUpdateCoffeeType(type);
-
-      const createdCoffee = await prisma.coffee.create({
+      const newCoffee = await prisma.coffee.create({
         data: {
           title,
           description,
           price,
-          typeId: coffeeType.id,
-          image: imagePath,
+          typeId: existingType.id,
         },
       });
 
-      return res.status(201).send(createdCoffee);
+      return res.status(201).send(newCoffee);
     } catch (error) {
-      if (error instanceof ZodError) {
-        return res.status(400).send({ message: "Invalid coffee data" });
+      return res.status(500).send({ error: "Error creating new coffee." });
+    }
+  });
+
+  app.put("/coffees/:id", async (req, res) => {
+    const { id } = req.params as UpdateCoffeeRequest;
+    const { title, description, price, typeName } =
+      req.body as CreateCoffeeRequest;
+
+    try {
+      const existingType = await prisma.type.findUnique({
+        where: {
+          title: typeName,
+        },
+      });
+
+      if (!existingType) {
+        return res
+          .status(400)
+          .send({ error: "The coffee type informed does not exist." });
       }
-      return res.status(400).send({ message: "Invalid image upload" });
+
+      const updatedCoffee = await prisma.coffee.update({
+        where: {
+          id,
+        },
+        data: {
+          title,
+          description,
+          price,
+          typeId: existingType.id,
+        },
+      });
+
+      return res.status(200).send(updatedCoffee);
+    } catch (error) {
+      return res.status(500).send({ error: "Error updating coffee." });
+    }
+  });
+
+  app.delete("/coffees/:id", async (req, res) => {
+    const { id } = req.params as UpdateCoffeeRequest;
+
+    try {
+      await prisma.coffee.delete({
+        where: {
+          id,
+        },
+      });
+
+      return res.status(204).send();
+    } catch (error) {
+      return res.status(500).send({ error: "Error deleting coffee." });
     }
   });
 }

@@ -14,11 +14,10 @@ model Coffee {
   price       Float
   type        Type   @relation(fields: [typeId], references: [id])
   typeId      String
-  image       String
 }
 
 model Type {
   id      String   @id @default(uuid())
-  title   String
+  title   String   @unique
   coffees Coffee[]
 }
