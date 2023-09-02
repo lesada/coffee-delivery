@@ -23,8 +23,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["@types/styled-components-react-native"],
-    "typeRoots": ["./src/@types"]
+    "typeRoots": ["node_modules/@types", "./src/@types"]
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "babel.config.js"],

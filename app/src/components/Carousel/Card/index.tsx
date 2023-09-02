@@ -1,4 +1,4 @@
-import { ImageSourcePropType } from 'react-native';
+import { Images } from '@/assets';
 
 import Tag from '../../Tag';
 import Typography from '../../Typography';
@@ -6,19 +6,16 @@ import Typography from '../../Typography';
 import { Container, Info, Photo, Price } from './styles';
 
 type CardProps = {
-  image: ImageSourcePropType;
   title: string;
   type: string;
   description: string;
   price: string;
 };
 
-function Card({ image, title, type, description, price }: CardProps) {
-  if (!type) type = 'coffee';
-
+function Card({ title, type, description, price }: CardProps) {
   return (
     <Container>
-      <Photo source={image} />
+      <Photo source={Images[title.replace(/\s/g, '')]} />
       <Tag variant="tertiary"> {type.toUpperCase()} </Tag>
       <Info>
         <Typography

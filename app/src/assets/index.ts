@@ -1,7 +1,7 @@
 import Beans from './beans.png';
-import Coffee from './coffee.png';
+import CoffeeIcons from './CoffeeIcons';
 
 export const Images = {
-  Coffee,
   Beans,
+  ...CoffeeIcons,
 };
