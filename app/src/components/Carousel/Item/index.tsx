@@ -5,14 +5,14 @@ import Typography from '../../Typography';
 
 import { Container, Info, Photo, Price } from './styles';
 
-type CardProps = {
+type ItemProps = {
   title: string;
   type: string;
   description: string;
   price: string;
 };
 
-function Card({ title, type, description, price }: CardProps) {
+function Item({ title, type, description, price }: ItemProps) {
   return (
     <Container>
       <Photo source={Images[title.replace(/\s/g, '')]} />
@@ -61,4 +61,4 @@ function Card({ title, type, description, price }: CardProps) {
   );
 }
 
-export default Card;
+export default Item;

@@ -5,7 +5,7 @@ import List from 'react-native-anchor-carousel';
 
 import useGetCoffees from '@/hooks/useGetCoffees';
 
-import Card from './Card';
+import Item from './Item';
 
 import { Container } from './styles';
 
@@ -25,7 +25,7 @@ function Carousel() {
         <List
           data={items}
           separatorWidth={0}
-          renderItem={({ item }) => <Card {...item} />}
+          renderItem={({ item }) => <Item {...item} />}
           itemWidth={windowWidth * 0.6}
           containerWidth={windowWidth}
           keyExtractor={(item) => String(item.id)}
