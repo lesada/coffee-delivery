@@ -5,6 +5,8 @@ type TagVariant = 'primary' | 'secondary' | 'tertiary';
 
 export const Container = styled(View)<{ variant: TagVariant }>`
   border-radius: 100px;
+  transition: 100ms ease-in;
+
   ${({ variant, theme }) => {
     switch (variant) {
       case 'primary':

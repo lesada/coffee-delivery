@@ -10,6 +10,11 @@ export const Filter = styled(View)`
   padding: 16px 0;
 `;
 
+export const Tags = styled(View)`
+  flex-direction: row;
+  gap: 8px;
+`;
+
 export const TypeButton = styled(TouchableOpacity)`
   align-self: flex-start;
 `;

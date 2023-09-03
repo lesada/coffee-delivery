@@ -1,5 +1,5 @@
 import AmericanoCoffee from './AmericanoCoffee.png';
-import ArabianCoffee from './ArabianCoffee.png';
+import ArabicCoffee from './ArabicCoffee.png';
 import Cappuccino from './Cappuccino.png';
 import CubanCoffee from './CubanCoffee.png';
 import Espresso from './Espresso.png';
@@ -14,7 +14,7 @@ import Mochaccino from './Mochaccino.png';
 
 export default {
   AmericanoCoffee,
-  ArabianCoffee,
+  ArabicCoffee,
   Cappuccino,
   CubanCoffee,
   Espresso,

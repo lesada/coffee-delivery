@@ -11,13 +11,17 @@ import { TType } from '@/types/type';
 
 import Card from './Card';
 
-import { Container, Filter, TypeButton, Wrapper } from './styles';
+import { Container, Filter, Tags, TypeButton, Wrapper } from './styles';
 
 function List() {
   const [types, setTypes] = useState<TType[] | null>(null);
   const [activeType, setActiveType] = useState<TType | null>(null);
 
   const { data, loading } = useGetCoffees();
+
+  const filteredData = data?.filter((coffee) =>
+    activeType ? coffee.type === activeType.title : true,
+  );
 
   const getTypes = async () => {
     try {
@@ -50,33 +54,37 @@ function List() {
             >
               Our Coffees
             </Typography>
-            {types?.map((type) => (
-              <TypeButton
-                key={type.id}
-                onPress={() =>
-                  setActiveType((prev) => (prev === type ? null : type))
-                }
-              >
-                <Tag variant={activeType === type ? 'secondary' : 'primary'}>
-                  {type.title}
-                </Tag>
-              </TypeButton>
-            ))}
+            <Tags>
+              {types?.map((type) => (
+                <TypeButton
+                  key={type.id}
+                  onPress={() =>
+                    setActiveType((prev) => (prev === type ? null : type))
+                  }
+                >
+                  <Tag variant={activeType === type ? 'secondary' : 'primary'}>
+                    {type.title}
+                  </Tag>
+                </TypeButton>
+              ))}
+            </Tags>
           </Filter>
           {types?.map((type) => (
             <Wrapper key={type.id}>
-              <Typography
-                size="extraSmall"
-                color="neutral"
-                variation={400}
-                type="title"
-                bold
-              >
-                {type.title}
-              </Typography>
-              {data
+              {(!activeType || activeType?.title === type.title) && (
+                <Typography
+                  size="extraSmall"
+                  color="neutral"
+                  variation={400}
+                  type="title"
+                  bold
+                >
+                  {type.title}
+                </Typography>
+              )}
+              {filteredData
                 ?.filter((coffee) => coffee.type === type.title)
-                .sort((a, b) => a.title.localeCompare(b.title))
+                ?.sort((a, b) => a.title.localeCompare(b.title))
                 .map((coffee) => <Card key={coffee.id} {...coffee} />)}
             </Wrapper>
           ))}
