@@ -13,3 +13,7 @@ export const Filter = styled(View)`
 export const TypeButton = styled(TouchableOpacity)`
   align-self: flex-start;
 `;
+
+export const Wrapper = styled(View)`
+  gap: 32px;
+`;

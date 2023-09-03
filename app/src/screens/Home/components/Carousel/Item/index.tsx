@@ -1,6 +1,6 @@
-import { Images } from '@/assets';
 import Tag from '@/components/Tag';
 import Typography from '@/components/Typography';
+import { getCoffeeIcon } from '@/utils/getCoffeeIcon';
 
 import { Container, Info, Photo, Price } from './styles';
 
@@ -14,7 +14,7 @@ type ItemProps = {
 function Item({ title, type, description, price }: ItemProps) {
   return (
     <Container>
-      <Photo source={Images[title.replace(/\s/g, '')]} />
+      <Photo source={getCoffeeIcon(title)} />
       <Tag variant="tertiary"> {type.toUpperCase()} </Tag>
       <Info>
         <Typography
