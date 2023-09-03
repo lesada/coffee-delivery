@@ -1,16 +1,14 @@
 import { Text, View } from 'react-native';
 import styled, { css } from 'styled-components';
 
-export const Container = styled(View)<{
-  variant: 'primary' | 'secondary' | 'tertiary';
-}>`
-  border-radius: 100px;
+type TagVariant = 'primary' | 'secondary' | 'tertiary';
 
+export const Container = styled(View)<{ variant: TagVariant }>`
+  border-radius: 100px;
   ${({ variant, theme }) => {
     switch (variant) {
       case 'primary':
         return css`
-          background-color: 'transparent';
           border: 1px solid ${theme.colors.primary[200]};
           padding: 6px 12px;
         `;
@@ -30,9 +28,7 @@ export const Container = styled(View)<{
   }}
 `;
 
-export const Content = styled(Text)<{
-  variant: 'primary' | 'secondary' | 'tertiary';
-}>`
+export const Content = styled(Text)<{ variant: TagVariant }>`
   font-size: 10px;
   font-family: ${({ theme }) => theme.fonts.RobotoBold};
   line-height: 13px;

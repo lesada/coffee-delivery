@@ -9,7 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components';
 
-import Home from './src/pages/Home';
+import Home from './src/screens/Home';
 
 import theme from './src/styles/theme';
 

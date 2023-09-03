@@ -1,7 +1,6 @@
 import { Images } from '@/assets';
-
-import Tag from '../../Tag';
-import Typography from '../../Typography';
+import Tag from '@/components/Tag';
+import Typography from '@/components/Typography';
 
 import { Container, Info, Photo, Price } from './styles';
 
