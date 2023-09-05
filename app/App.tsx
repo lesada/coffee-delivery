@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { Baloo2_500Medium, Baloo2_700Bold } from '@expo-google-fonts/baloo-2';
 import {
   Roboto_500Medium,
@@ -7,13 +9,19 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
+import AnimatedSplash from 'react-native-animated-splash-screen';
 import { ThemeProvider } from 'styled-components';
+
+import SplashScreen from '@/animations/splashScreen';
 
 import Home from './src/screens/Home';
 
 import theme from './src/styles/theme';
 
 export default function App() {
+  const [isSplashScreenAnimationFinished, setIsSplashScreenAnimationFinished] =
+    useState(false);
+
   const [fontsLoaded] = useFonts({
     Roboto: Roboto_500Medium,
     RobotoBold: Roboto_700Bold,
@@ -21,24 +29,33 @@ export default function App() {
     BalooBold: Baloo2_700Bold,
   });
 
-  if (!fontsLoaded) {
-    return null;
-  }
-
   const Stack = createNativeStackNavigator();
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsSplashScreenAnimationFinished(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <ThemeProvider theme={theme}>
-      <StatusBar
-        translucent
-        backgroundColor={theme.colors.neutral[100]}
-        style="light"
-      />
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Home" component={Home} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </ThemeProvider>
+    <AnimatedSplash
+      translucent={true}
+      isLoaded={isSplashScreenAnimationFinished && fontsLoaded}
+      customComponent={<SplashScreen />}
+      backgroundColor={'#8047f8'}
+    >
+      {fontsLoaded ? (
+        <ThemeProvider theme={theme}>
+          <StatusBar translucent style="light" />
+          <NavigationContainer>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="Home" component={Home} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </ThemeProvider>
+      ) : null}
+    </AnimatedSplash>
   );
 }

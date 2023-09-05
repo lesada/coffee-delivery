@@ -8,6 +8,7 @@ module.exports = function (api) {
         {
           root: ['./src'],
           alias: {
+            '@/animations': './src/animations',
             '@/assets': './src/assets',
             '@/components': './src/components',
             '@/hooks': './src/hooks',
@@ -26,6 +27,7 @@ module.exports = function (api) {
           path: '.env',
         },
       ],
+      ['react-native-reanimated/plugin'],
     ],
   };
 };
