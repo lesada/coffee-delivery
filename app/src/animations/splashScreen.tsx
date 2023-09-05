@@ -71,15 +71,7 @@ function SplashScreen() {
   `;
 
   return (
-    <Container
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        position: 'relative',
-      }}
-    >
+    <Container>
       <Animated.View style={[iconAnimatedStyle]}>
         <Images.LogoIcon />
       </Animated.View>
