@@ -4,4 +4,5 @@ export type TCoffee = {
   type: string;
   price: string;
   description: string;
+  image: typeof import('*.png');
 };

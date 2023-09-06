@@ -1,5 +1,4 @@
 import Typography from '@/components/Typography';
-import { getCoffeeIcon } from '@/utils/getCoffeeIcon';
 
 import { Container, Photo, Price, Wrapper } from './styles';
 
@@ -7,12 +6,13 @@ type CardProps = {
   title: string;
   description: string;
   price: string;
+  image: typeof import('*.png');
 };
 
-function Card({ title, description, price }: CardProps) {
+function Card({ title, description, price, image }: CardProps) {
   return (
     <Container>
-      <Photo source={getCoffeeIcon(title)} />
+      <Photo source={image} />
       <Wrapper>
         <Typography
           size="small"

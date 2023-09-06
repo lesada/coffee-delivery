@@ -9,6 +9,7 @@ import {
 import { API_BASE } from '@env';
 import axios from 'axios';
 
+import { Images } from '@/assets';
 import { TCoffee } from '@/types/coffee';
 
 type CoffeeContextType = {
@@ -23,10 +24,21 @@ const CoffeeListContext = createContext<CoffeeContextType>(
 function CoffeeListProvider({ children }: PropsWithChildren) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<TCoffee[] | null>(null);
+
+  const getCoffeeIcon = (title: string) => {
+    return Images[title.replace(/\s/g, '')] || Images.AmericanoCoffee;
+  };
+
   const fetchData = async () => {
     try {
       const response = await axios.get(`${API_BASE}/coffees`);
-      setData(response.data);
+
+      const coffeesWithImages = response.data.map((coffee: TCoffee) => ({
+        ...coffee,
+        image: getCoffeeIcon(coffee.title),
+      }));
+
+      setData(coffeesWithImages);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {

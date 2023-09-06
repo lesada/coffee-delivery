@@ -1,6 +1,5 @@
 import Tag from '@/components/Tag';
 import Typography from '@/components/Typography';
-import { getCoffeeIcon } from '@/utils/getCoffeeIcon';
 
 import { Container, Info, Photo, Price } from './styles';
 
@@ -9,12 +8,13 @@ type ItemProps = {
   type: string;
   description: string;
   price: string;
+  image: typeof import('*.png');
 };
 
-function Item({ title, type, description, price }: ItemProps) {
+function Item({ title, type, description, price, image }: ItemProps) {
   return (
     <Container>
-      <Photo source={getCoffeeIcon(title)} />
+      <Photo source={image} />
       <Tag variant="tertiary"> {type.toUpperCase()} </Tag>
       <Info>
         <Typography
