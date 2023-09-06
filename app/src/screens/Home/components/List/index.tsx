@@ -6,7 +6,7 @@ import { Text, View } from 'react-native';
 
 import Tag from '@/components/Tag';
 import Typography from '@/components/Typography';
-import useGetCoffees from '@/hooks/useGetCoffees';
+import { useCoffeeList } from '@/contexts/coffeeList';
 import { TType } from '@/types/type';
 
 import Card from './Card';
@@ -17,7 +17,7 @@ function List() {
   const [types, setTypes] = useState<TType[] | null>(null);
   const [activeType, setActiveType] = useState<TType | null>(null);
 
-  const { data, loading } = useGetCoffees();
+  const { data, loading } = useCoffeeList();
 
   const filteredData = data?.filter((coffee) =>
     activeType ? coffee.type === activeType.title : true,

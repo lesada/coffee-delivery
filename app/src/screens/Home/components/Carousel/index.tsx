@@ -3,7 +3,7 @@ import React from 'react';
 import { Dimensions, Text, View } from 'react-native';
 import List from 'react-native-anchor-carousel';
 
-import useGetCoffees from '@/hooks/useGetCoffees';
+import { useCoffeeList } from '@/contexts/coffeeList';
 
 import Item from './Item';
 
@@ -11,7 +11,7 @@ import { Container } from './styles';
 
 function Carousel() {
   const { width: windowWidth } = Dimensions.get('window');
-  const { data, loading } = useGetCoffees();
+  const { data, loading } = useCoffeeList();
 
   const items = data?.slice(0, 5);
 

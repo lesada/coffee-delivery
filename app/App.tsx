@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Baloo2_500Medium, Baloo2_700Bold } from '@expo-google-fonts/baloo-2';
 import {
@@ -13,6 +13,7 @@ import AnimatedSplash from 'react-native-animated-splash-screen';
 import { ThemeProvider } from 'styled-components';
 
 import SplashScreen from '@/animations/splashScreen';
+import CoffeeListProvider from '@/contexts/coffeeList';
 
 import Home from './src/screens/Home';
 
@@ -48,12 +49,14 @@ export default function App() {
     >
       {fontsLoaded ? (
         <ThemeProvider theme={theme}>
-          <StatusBar translucent style="light" />
-          <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="Home" component={Home} />
-            </Stack.Navigator>
-          </NavigationContainer>
+          <CoffeeListProvider>
+            <StatusBar translucent />
+            <NavigationContainer>
+              <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="Home" component={Home} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </CoffeeListProvider>
         </ThemeProvider>
       ) : null}
     </AnimatedSplash>
