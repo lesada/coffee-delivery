@@ -9,7 +9,20 @@ import { Filter, Tags, TypeButton } from './styles';
 
 function Navigation() {
   const [activeType, setActiveType] = useState<TType | null>(null);
-  const { types } = useCoffeeList();
+
+  const { types, data, setFilteredData } = useCoffeeList();
+
+  const handleFilter = (type: TType) => {
+    if (type === activeType) {
+      setActiveType(null);
+      setFilteredData(data);
+    } else {
+      setActiveType(type);
+      const filteredData = data?.filter((coffee) => coffee.type === type.title);
+
+      setFilteredData(filteredData || null);
+    }
+  };
 
   return (
     <Filter>
@@ -24,12 +37,7 @@ function Navigation() {
       </Typography>
       <Tags>
         {types?.map((type) => (
-          <TypeButton
-            key={type.id}
-            onPress={() =>
-              setActiveType((prev) => (prev === type ? null : type))
-            }
-          >
+          <TypeButton key={type.id} onPress={() => handleFilter(type)}>
             <Tag variant={activeType === type ? 'secondary' : 'primary'}>
               {type.title}
             </Tag>
