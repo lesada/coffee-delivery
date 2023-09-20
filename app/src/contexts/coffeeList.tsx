@@ -1,6 +1,7 @@
 import {
   PropsWithChildren,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -11,10 +12,12 @@ import axios from 'axios';
 
 import { Images } from '@/assets';
 import { TCoffee } from '@/types/coffee';
+import { TType } from '@/types/type';
 
 type CoffeeContextType = {
   loading: boolean;
   data: TCoffee[] | null;
+  types: TType[] | null;
 };
 
 const CoffeeListContext = createContext<CoffeeContextType>(
@@ -22,6 +25,7 @@ const CoffeeListContext = createContext<CoffeeContextType>(
 );
 
 function CoffeeListProvider({ children }: PropsWithChildren) {
+  const [types, setTypes] = useState<TType[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<TCoffee[] | null>(null);
 
@@ -29,7 +33,7 @@ function CoffeeListProvider({ children }: PropsWithChildren) {
     return Images[title.replace(/\s/g, '')] || Images.AmericanoCoffee;
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response = await axios.get(`${API_BASE}/coffees`);
 
@@ -44,14 +48,24 @@ function CoffeeListProvider({ children }: PropsWithChildren) {
     } finally {
       setLoading(false);
     }
+  }, []);
+
+  const getTypes = async () => {
+    try {
+      const response = await axios.get(`${API_BASE}/types`);
+      setTypes(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+    getTypes();
+  }, [fetchData]);
 
   return (
-    <CoffeeListContext.Provider value={{ loading, data }}>
+    <CoffeeListContext.Provider value={{ loading, data, types }}>
       {children}
     </CoffeeListContext.Provider>
   );

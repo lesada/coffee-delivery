@@ -1,22 +1,9 @@
-import { TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import { styled } from 'styled-components';
 
 export const Container = styled(View)`
   gap: 16px;
-`;
-
-export const Filter = styled(View)`
-  gap: 12px;
-  padding: 16px 0;
-`;
-
-export const Tags = styled(View)`
-  flex-direction: row;
-  gap: 8px;
-`;
-
-export const TypeButton = styled(TouchableOpacity)`
-  align-self: flex-start;
+  padding: 0 ${({ theme }) => theme.containerPadding}px;
 `;
 
 export const Wrapper = styled(View)`

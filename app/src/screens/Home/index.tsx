@@ -9,8 +9,9 @@ import theme from '@/styles/theme';
 
 import Carousel from './components/Carousel';
 import List from './components/List';
+import Navigation from './components/Navigation';
 
-import { Background, Cart, Header, Wrapper } from './styles';
+import { Cart, Header, Wrapper } from './styles';
 
 function Home() {
   return (
@@ -20,7 +21,11 @@ function Home() {
         backgroundColor={theme.colors.neutral[100]}
         style="light"
       />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[2]}
+        contentContainerStyle={{ backgroundColor: '#FAFAFA' }}
+      >
         <Header>
           <Wrapper>
             <Location />
@@ -33,10 +38,9 @@ function Home() {
           </Typography>
           <Search />
         </Header>
-        <Background>
-          <Carousel />
-          <List />
-        </Background>
+        <Carousel />
+        <Navigation />
+        <List />
       </ScrollView>
     </DefaultLayout>
   );
