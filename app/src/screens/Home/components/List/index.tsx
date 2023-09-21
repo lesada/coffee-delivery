@@ -1,24 +1,33 @@
 import React from 'react';
 
-import { Text, View } from 'react-native';
-
+import Loader from '@/components/Loader';
 import Typography from '@/components/Typography';
 import { useCoffeeList } from '@/contexts/coffeeList';
+import { useFilterCoffee } from '@/contexts/filterCoffee';
 
 import Card from './Card';
 
 import { Container, Wrapper } from './styles';
 
 function List() {
-  const { filteredData, loading, types } = useCoffeeList();
+  const { loading, types } = useCoffeeList();
+  const { filteredData } = useFilterCoffee();
 
-  if (loading) {
-    <Container>
-      <View>
-        <Text>Loading</Text>
-      </View>
-    </Container>;
-  }
+  if (loading) return <Loader />;
+  if (filteredData?.length === 0)
+    return (
+      <Container>
+        <Typography
+          size="extraSmall"
+          color="neutral"
+          variation={400}
+          type="title"
+          bold
+        >
+          Couldn't find any coffee with this filter and/or search :(
+        </Typography>
+      </Container>
+    );
 
   return (
     <Container>

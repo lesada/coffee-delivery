@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Dimensions, Text, View } from 'react-native';
+import { Dimensions } from 'react-native';
 import List from 'react-native-anchor-carousel';
 
+import Loader from '@/components/Loader';
 import { useCoffeeList } from '@/contexts/coffeeList';
 
 import Item from './Item';
@@ -18,9 +19,7 @@ function Carousel() {
   return (
     <Container>
       {loading ? (
-        <View>
-          <Text>Loading</Text>
-        </View>
+        <Loader />
       ) : (
         <List
           data={items}

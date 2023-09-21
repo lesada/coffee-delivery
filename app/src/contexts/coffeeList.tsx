@@ -19,8 +19,6 @@ type CoffeeContextType = {
   data: TCoffee[] | null;
   setData: React.Dispatch<React.SetStateAction<TCoffee[] | null>>;
   types: TType[] | null;
-  filteredData: TCoffee[] | null;
-  setFilteredData: React.Dispatch<React.SetStateAction<TCoffee[] | null>>;
 };
 
 const CoffeeListContext = createContext<CoffeeContextType>(
@@ -31,7 +29,6 @@ function CoffeeListProvider({ children }: PropsWithChildren) {
   const [types, setTypes] = useState<TType[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<TCoffee[] | null>(null);
-  const [filteredData, setFilteredData] = useState<TCoffee[] | null>(null);
 
   const getCoffeeIcon = (title: string) => {
     return Images[title.replace(/\s/g, '')] || Images.AmericanoCoffee;
@@ -47,7 +44,6 @@ function CoffeeListProvider({ children }: PropsWithChildren) {
       }));
 
       setData(coffeesWithImages);
-      setFilteredData(coffeesWithImages);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -70,9 +66,7 @@ function CoffeeListProvider({ children }: PropsWithChildren) {
   }, [fetchData]);
 
   return (
-    <CoffeeListContext.Provider
-      value={{ loading, data, setData, types, filteredData, setFilteredData }}
-    >
+    <CoffeeListContext.Provider value={{ loading, data, setData, types }}>
       {children}
     </CoffeeListContext.Provider>
   );

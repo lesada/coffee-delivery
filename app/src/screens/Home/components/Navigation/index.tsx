@@ -1,27 +1,17 @@
-import { useState } from 'react';
-
 import Tag from '@/components/Tag';
 import Typography from '@/components/Typography';
 import { useCoffeeList } from '@/contexts/coffeeList';
+import { useFilterCoffee } from '@/contexts/filterCoffee';
 import { TType } from '@/types/type';
 
 import { Filter, Tags, TypeButton } from './styles';
 
 function Navigation() {
-  const [activeType, setActiveType] = useState<TType | null>(null);
-
-  const { types, data, setFilteredData } = useCoffeeList();
+  const { types } = useCoffeeList();
+  const { activeType, setActiveType } = useFilterCoffee();
 
   const handleFilter = (type: TType) => {
-    if (type === activeType) {
-      setActiveType(null);
-      setFilteredData(data);
-    } else {
-      setActiveType(type);
-      const filteredData = data?.filter((coffee) => coffee.type === type.title);
-
-      setFilteredData(filteredData || null);
-    }
+    setActiveType(type === activeType ? null : type);
   };
 
   return (
