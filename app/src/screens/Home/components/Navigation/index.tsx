@@ -28,7 +28,7 @@ function Navigation() {
       <Tags>
         {types?.map((type) => (
           <TypeButton key={type.id} onPress={() => handleFilter(type)}>
-            <Tag variant={activeType === type ? 'secondary' : 'primary'}>
+            <Tag variant={activeType === type ? 'active' : 'outlined'}>
               {type.title}
             </Tag>
           </TypeButton>

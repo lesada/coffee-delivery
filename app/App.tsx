@@ -14,10 +14,15 @@ import { ThemeProvider } from 'styled-components';
 
 import SplashScreen from '@/animations/splashScreen';
 import CoffeeListProvider from '@/contexts/coffeeList';
-
-import Home from './src/screens/Home';
+import CoffeeDetails from '@/screens/CoffeeDetails';
+import Home from '@/screens/Home';
 
 import theme from './src/styles/theme';
+
+export type RootStackParamList = {
+  Home: undefined;
+  CoffeeDetails: undefined;
+};
 
 export default function App() {
   const [isSplashScreenAnimationFinished, setIsSplashScreenAnimationFinished] =
@@ -30,7 +35,7 @@ export default function App() {
     BalooBold: Baloo2_700Bold,
   });
 
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<RootStackParamList>();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -52,8 +57,12 @@ export default function App() {
           <CoffeeListProvider>
             <StatusBar translucent />
             <NavigationContainer>
-              <Stack.Navigator screenOptions={{ headerShown: false }}>
+              <Stack.Navigator
+                screenOptions={{ headerShown: false }}
+                initialRouteName="Home"
+              >
                 <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="CoffeeDetails" component={CoffeeDetails} />
               </Stack.Navigator>
             </NavigationContainer>
           </CoffeeListProvider>

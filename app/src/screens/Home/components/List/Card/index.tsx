@@ -29,7 +29,7 @@ function Card({ title, description, price, image }: CardProps) {
       </Wrapper>
       <Price>
         <Typography size="medium" type="text" color="secondary" variation={100}>
-          R$ {''}
+          $ {''}
         </Typography>
         <Typography
           size="medium"

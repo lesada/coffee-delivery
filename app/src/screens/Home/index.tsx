@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, TouchableOpacity } from 'react-native';
+import { ScrollView } from 'react-native';
 
+import CartButton from '@/components/CartButton';
 import DefaultLayout from '@/components/DefaultLayout';
 import Location from '@/components/Location';
 import Typography from '@/components/Typography';
@@ -12,7 +13,7 @@ import List from './components/List';
 import Navigation from './components/Navigation';
 import Search from './components/Search';
 
-import { Background, Cart, Header, Wrapper } from './styles';
+import { Background, Header, Wrapper } from './styles';
 
 function Home() {
   return (
@@ -32,9 +33,7 @@ function Home() {
             <Header>
               <Wrapper>
                 <Location />
-                <TouchableOpacity>
-                  <Cart name="shopping-cart" />
-                </TouchableOpacity>
+                <CartButton />
               </Wrapper>
               <Typography type="title" size="medium">
                 The perfect coffee for your taste in the palm of your hand
