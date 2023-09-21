@@ -3,13 +3,13 @@ import { ScrollView, TouchableOpacity } from 'react-native';
 
 import DefaultLayout from '@/components/DefaultLayout';
 import Location from '@/components/Location';
-import Search from '@/components/Search';
 import Typography from '@/components/Typography';
 import theme from '@/styles/theme';
 
 import Carousel from './components/Carousel';
 import List from './components/List';
 import Navigation from './components/Navigation';
+import Search from './components/Search';
 
 import { Cart, Header, Wrapper } from './styles';
 
