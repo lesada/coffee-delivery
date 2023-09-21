@@ -12,7 +12,7 @@ import List from './components/List';
 import Navigation from './components/Navigation';
 import Search from './components/Search';
 
-import { Cart, Header, Wrapper } from './styles';
+import { Background, Cart, Header, Wrapper } from './styles';
 
 function Home() {
   return (
@@ -23,27 +23,29 @@ function Home() {
         style="light"
       />
       <FilterCoffeeProvider>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[2]}
-          contentContainerStyle={{ backgroundColor: '#FAFAFA' }}
-        >
-          <Header>
-            <Wrapper>
-              <Location />
-              <TouchableOpacity>
-                <Cart name="shopping-cart" />
-              </TouchableOpacity>
-            </Wrapper>
-            <Typography type="title" size="medium">
-              The perfect coffee for your taste in the palm of your hand
-            </Typography>
-            <Search />
-          </Header>
-          <Carousel />
-          <Navigation />
-          <List />
-        </ScrollView>
+        <Background>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            stickyHeaderIndices={[2]}
+            contentContainerStyle={{ backgroundColor: '#FAFAFA' }}
+          >
+            <Header>
+              <Wrapper>
+                <Location />
+                <TouchableOpacity>
+                  <Cart name="shopping-cart" />
+                </TouchableOpacity>
+              </Wrapper>
+              <Typography type="title" size="medium">
+                The perfect coffee for your taste in the palm of your hand
+              </Typography>
+              <Search />
+            </Header>
+            <Carousel />
+            <Navigation />
+            <List />
+          </ScrollView>
+        </Background>
       </FilterCoffeeProvider>
     </DefaultLayout>
   );

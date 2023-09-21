@@ -14,6 +14,20 @@ function List() {
   const { filteredData } = useFilterCoffee();
 
   if (loading) return <Loader />;
+  if (filteredData?.length === 0)
+    return (
+      <Container>
+        <Typography
+          size="extraSmall"
+          color="neutral"
+          variation={400}
+          type="title"
+          bold
+        >
+          Couldn't find any coffee with this filter and/or search :(
+        </Typography>
+      </Container>
+    );
 
   return (
     <Container>
