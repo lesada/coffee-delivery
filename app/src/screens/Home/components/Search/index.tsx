@@ -3,26 +3,28 @@ import { useState } from 'react';
 import { Image } from 'react-native';
 
 import { Images } from '@/assets';
+import { useFilterCoffee } from '@/contexts/filterCoffee';
 
 import { Container, Icon, Input, Wrapper } from './styles';
 
 function Search() {
-  const [field, setField] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+
+  const { search, setSearch } = useFilterCoffee();
 
   return (
     <Container>
       <Wrapper>
         <Icon
           name="search"
-          state={(isFocused && 'focused') || (field && 'filled') || 'default'}
+          state={(isFocused && 'focused') || (search && 'filled') || 'default'}
         />
         <Input
           placeholder="Search"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          value={field}
-          onChangeText={(text) => setField(text)}
+          value={search}
+          onChangeText={(text) => setSearch(text)}
         />
       </Wrapper>
       <Image source={Images.Beans} />
