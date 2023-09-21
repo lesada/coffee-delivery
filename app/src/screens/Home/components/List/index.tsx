@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Text, View } from 'react-native';
-
+import Loader from '@/components/Loader';
 import Typography from '@/components/Typography';
 import { useCoffeeList } from '@/contexts/coffeeList';
 
@@ -12,13 +11,7 @@ import { Container, Wrapper } from './styles';
 function List() {
   const { filteredData, loading, types } = useCoffeeList();
 
-  if (loading) {
-    <Container>
-      <View>
-        <Text>Loading</Text>
-      </View>
-    </Container>;
-  }
+  if (loading) return <Loader />;
 
   return (
     <Container>
