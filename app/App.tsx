@@ -6,14 +6,8 @@ import {
   Roboto_700Bold,
   useFonts,
 } from '@expo-google-fonts/roboto';
-import {
-  CompositeNavigationProp,
-  NavigationContainer,
-} from '@react-navigation/native';
-import {
-  NativeStackNavigationProp,
-  createNativeStackNavigator,
-} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import AnimatedSplash from 'react-native-animated-splash-screen';
 import { ThemeProvider } from 'styled-components';
@@ -24,21 +18,6 @@ import CoffeeDetails from '@/screens/CoffeeDetails';
 import Home from '@/screens/Home';
 
 import theme from './src/styles/theme';
-
-export type RootStackParamList = {
-  Home: undefined;
-  CoffeeDetails: {
-    title: string;
-    type: string;
-    description: string;
-    price: string;
-  };
-};
-
-export type ProfileScreenNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<RootStackParamList, 'Home'>,
-  NativeStackNavigationProp<RootStackParamList>
->;
 
 export default function App() {
   const [isSplashScreenAnimationFinished, setIsSplashScreenAnimationFinished] =

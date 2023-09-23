@@ -1,35 +1,19 @@
-import { useNavigation } from '@react-navigation/native';
 import { TouchableWithoutFeedback } from 'react-native';
 
 import Tag from '@/components/Tag';
 import Typography from '@/components/Typography';
-
-import { ProfileScreenNavigationProp } from '../../../../../../App';
+import { useOpenDetails } from '@/hooks/useOpenDetails';
+import { TCoffee } from '@/types/coffee';
 
 import { Container, Info, Photo, Price } from './styles';
 
-type ItemProps = {
-  title: string;
-  type: string;
-  description: string;
-  price: string;
-  image: typeof import('*.png');
-};
-
-function Item({ title, type, description, price, image }: ItemProps) {
-  const navigation = useNavigation<ProfileScreenNavigationProp>();
-
-  const openItemDetails = () => {
-    navigation.navigate('CoffeeDetails', {
-      title,
-      type,
-      description,
-      price,
-    });
-  };
+function Item({ title, type, description, price, image }: TCoffee) {
+  const openDetails = useOpenDetails();
 
   return (
-    <TouchableWithoutFeedback onPress={openItemDetails}>
+    <TouchableWithoutFeedback
+      onPress={() => openDetails(title, type, description, price)}
+    >
       <Container>
         <Photo source={image} />
         <Tag variant="light"> {type.toUpperCase()} </Tag>
