@@ -46,7 +46,6 @@ function List() {
               </Typography>
 
               {filteredData
-                ?.filter((coffee) => coffee.type === type.title)
                 ?.sort((a, b) => a.title.localeCompare(b.title))
                 .map((coffee) => <Card key={coffee.id} {...coffee} />)}
             </Wrapper>

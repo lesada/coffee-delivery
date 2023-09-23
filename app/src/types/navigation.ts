@@ -1,6 +1,8 @@
 import { CompositeNavigationProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
+import { Size } from './size';
+
 export type RootStackParamList = {
   Home: undefined;
   CoffeeDetails: {
@@ -8,6 +10,7 @@ export type RootStackParamList = {
     type: string;
     description: string;
     price: string;
+    sizes: Size[];
   };
 };
 

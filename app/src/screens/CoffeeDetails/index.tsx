@@ -11,6 +11,7 @@ import DefaultLayout from '@/components/DefaultLayout';
 import Tag from '@/components/Tag';
 import Typography from '@/components/Typography';
 import theme from '@/styles/theme';
+import { Size } from '@/types/size';
 
 import Quantity from './Quantity';
 import SizeButton from './SizeButton';
@@ -34,12 +35,13 @@ type CoffeeDetailsParams = {
   type: string;
   description: string;
   price: string;
+  sizes: Size[];
 };
 
 function CoffeeDetails() {
   const [activeSize, setActiveSize] = useState<string>('140ml');
   const route = useRoute();
-  const { title, type, description, price } =
+  const { title, type, description, price, sizes } =
     route.params as CoffeeDetailsParams;
 
   return (
@@ -95,24 +97,15 @@ function CoffeeDetails() {
           Select a size:
         </Typography>
         <Sizes>
-          <SizeButton
-            activeSize={activeSize}
-            onPress={() => setActiveSize('114ml')}
-          >
-            114ml
-          </SizeButton>
-          <SizeButton
-            activeSize={activeSize}
-            onPress={() => setActiveSize('140ml')}
-          >
-            140ml
-          </SizeButton>
-          <SizeButton
-            activeSize={activeSize}
-            onPress={() => setActiveSize('227ml')}
-          >
-            227ml
-          </SizeButton>
+          {sizes?.map((size) => (
+            <SizeButton
+              key={size.id}
+              activeSize={activeSize}
+              onPress={() => setActiveSize(size.name)}
+            >
+              {size.name}
+            </SizeButton>
+          ))}
         </Sizes>
         <Add>
           <Quantity />

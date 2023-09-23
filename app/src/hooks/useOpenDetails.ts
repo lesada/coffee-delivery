@@ -10,12 +10,18 @@ export const useOpenDetails = () => {
     type: string,
     description: string,
     price: string,
+    sizes: {
+      id: string;
+      title: string;
+      price: string;
+    }[],
   ) => {
     navigation.navigate('CoffeeDetails', {
       title,
       type,
       description,
       price,
+      sizes,
     });
   };
 
