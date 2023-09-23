@@ -45,6 +45,7 @@ function List() {
 
               {filteredData
                 ?.sort((a, b) => a.title.localeCompare(b.title))
+                .filter((coffee) => coffee.type === type.title)
                 .map((coffee) => <Card key={coffee.id} {...coffee} />)}
             </Wrapper>
           )

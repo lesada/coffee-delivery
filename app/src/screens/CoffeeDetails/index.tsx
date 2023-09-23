@@ -39,10 +39,15 @@ type CoffeeDetailsParams = {
 };
 
 function CoffeeDetails() {
-  const [activeSize, setActiveSize] = useState<string>('140ml');
   const route = useRoute();
   const { title, type, description, price, sizes } =
     route.params as CoffeeDetailsParams;
+
+  const sizesSorted = sizes?.sort(
+    (a, b) => parseInt(a.name) - parseInt(b.name),
+  );
+
+  const [activeSize, setActiveSize] = useState(sizesSorted[1].name);
 
   return (
     <DefaultLayout>
@@ -97,7 +102,7 @@ function CoffeeDetails() {
           Select a size:
         </Typography>
         <Sizes>
-          {sizes?.map((size) => (
+          {sizesSorted?.map((size) => (
             <SizeButton
               key={size.id}
               activeSize={activeSize}
