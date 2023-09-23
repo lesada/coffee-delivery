@@ -6,8 +6,14 @@ import {
   Roboto_700Bold,
   useFonts,
 } from '@expo-google-fonts/roboto';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  CompositeNavigationProp,
+  NavigationContainer,
+} from '@react-navigation/native';
+import {
+  NativeStackNavigationProp,
+  createNativeStackNavigator,
+} from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import AnimatedSplash from 'react-native-animated-splash-screen';
 import { ThemeProvider } from 'styled-components';
@@ -21,8 +27,18 @@ import theme from './src/styles/theme';
 
 export type RootStackParamList = {
   Home: undefined;
-  CoffeeDetails: undefined;
+  CoffeeDetails: {
+    title: string;
+    type: string;
+    description: string;
+    price: string;
+  };
 };
+
+export type ProfileScreenNavigationProp = CompositeNavigationProp<
+  NativeStackNavigationProp<RootStackParamList, 'Home'>,
+  NativeStackNavigationProp<RootStackParamList>
+>;
 
 export default function App() {
   const [isSplashScreenAnimationFinished, setIsSplashScreenAnimationFinished] =
@@ -35,7 +51,7 @@ export default function App() {
     BalooBold: Baloo2_700Bold,
   });
 
-  const Stack = createNativeStackNavigator<RootStackParamList>();
+  const Stack = createNativeStackNavigator();
 
   useEffect(() => {
     const timer = setTimeout(() => {

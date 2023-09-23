@@ -13,7 +13,6 @@ declare module '*.svg' {
 }
 
 declare global {
-  import { RootStackParamList } from '../../App';
   namespace ReactNavigation {
     interface RootParamList extends RootStackParamList {}
   }

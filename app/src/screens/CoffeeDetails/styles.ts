@@ -42,15 +42,16 @@ export const Price = styled(View)`
 `;
 
 export const Coffee = styled(View)`
-  position: relative;
+  align-items: center;
   flex: 1;
 `;
 
 export const Photo = styled(Image)`
-  flex: 1;
-
-  position: absolute;
-  bottom: -64px;
+  bottom: -17.5%;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 295/260;
+  min-width: 180px;
 `;
 
 export const Options = styled(View)`

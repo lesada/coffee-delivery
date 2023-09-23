@@ -4,6 +4,8 @@ import { TouchableWithoutFeedback } from 'react-native';
 import Tag from '@/components/Tag';
 import Typography from '@/components/Typography';
 
+import { ProfileScreenNavigationProp } from '../../../../../../App';
+
 import { Container, Info, Photo, Price } from './styles';
 
 type ItemProps = {
@@ -15,10 +17,15 @@ type ItemProps = {
 };
 
 function Item({ title, type, description, price, image }: ItemProps) {
-  const navigation = useNavigation();
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
 
   const openItemDetails = () => {
-    navigation.navigate('CoffeeDetails' as never);
+    navigation.navigate('CoffeeDetails', {
+      title,
+      type,
+      description,
+      price,
+    });
   };
 
   return (

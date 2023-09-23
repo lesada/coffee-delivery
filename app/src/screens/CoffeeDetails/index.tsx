@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { useRoute } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
 import { Images } from '@/assets';
@@ -28,8 +29,19 @@ import {
   TitleWrapper,
 } from './styles';
 
+type CoffeeDetailsParams = {
+  title: string;
+  type: string;
+  description: string;
+  price: string;
+};
+
 function CoffeeDetails() {
   const [activeSize, setActiveSize] = useState<string>('140ml');
+  const route = useRoute();
+  const { title, type, description, price } =
+    route.params as CoffeeDetailsParams;
+
   return (
     <DefaultLayout>
       <StatusBar
@@ -45,9 +57,9 @@ function CoffeeDetails() {
         <Info>
           <PrincipalInfoWrapper>
             <TitleWrapper>
-              <Tag variant="dark">Special</Tag>
+              <Tag variant="dark">{type}</Tag>
               <Typography size="medium" type="title" bold>
-                Irish Coffee
+                {title}
               </Typography>
             </TitleWrapper>
             <Price>
@@ -66,13 +78,12 @@ function CoffeeDetails() {
                 variation={100}
                 bold
               >
-                9,90
+                {price}
               </Typography>
             </Price>
           </PrincipalInfoWrapper>
           <Typography size="large" type="text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eros
-            lorem
+            {description}
           </Typography>
         </Info>
         <Coffee>
