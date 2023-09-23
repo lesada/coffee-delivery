@@ -5,6 +5,10 @@ export const CreateCoffeeSchema = object({
   description: string(),
   price: number(),
   typeName: string(),
+  sizes: object({
+    name: string(),
+    priceIncreaseRate: number(),
+  }).array(),
 });
 
 export const UpdateCoffeeSchema = object({
@@ -12,4 +16,10 @@ export const UpdateCoffeeSchema = object({
   description: string().optional(),
   price: number().optional(),
   typeName: string().optional(),
+  sizes: object({
+    name: string().optional(),
+    priceIncreaseRate: number().optional(),
+  })
+    .array()
+    .optional(),
 });
