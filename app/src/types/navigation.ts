@@ -9,7 +9,7 @@ export type RootStackParamList = {
     title: string;
     type: string;
     description: string;
-    price: string;
+    price: number;
     sizes: Size[];
   };
 };

@@ -34,7 +34,7 @@ type CoffeeDetailsParams = {
   title: string;
   type: string;
   description: string;
-  price: string;
+  price: number;
   sizes: Size[];
 };
 
@@ -47,7 +47,7 @@ function CoffeeDetails() {
     (a, b) => parseInt(a.name) - parseInt(b.name),
   );
 
-  const [activeSize, setActiveSize] = useState(sizesSorted[1].name);
+  const [activeSize, setActiveSize] = useState(sizesSorted[1]);
 
   return (
     <DefaultLayout>
@@ -85,7 +85,7 @@ function CoffeeDetails() {
                 variation={100}
                 bold
               >
-                {price}
+                {(price * activeSize.priceIncreaseRate).toFixed(2)}
               </Typography>
             </Price>
           </PrincipalInfoWrapper>
@@ -105,8 +105,8 @@ function CoffeeDetails() {
           {sizesSorted?.map((size) => (
             <SizeButton
               key={size.id}
-              activeSize={activeSize}
-              onPress={() => setActiveSize(size.name)}
+              activeSize={activeSize.name}
+              onPress={() => setActiveSize(size)}
             >
               {size.name}
             </SizeButton>
