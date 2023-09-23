@@ -1,14 +1,13 @@
 import Tag from '@/components/Tag';
 import Typography from '@/components/Typography';
 import { useCoffeeList } from '@/contexts/coffeeList';
-import { useFilterCoffee } from '@/contexts/filterCoffee';
 import { TType } from '@/types/type';
 
 import { Filter, Tags, TypeButton } from './styles';
 
 function Navigation() {
   const { types } = useCoffeeList();
-  const { activeType, setActiveType } = useFilterCoffee();
+  const { activeType, setActiveType } = useCoffeeList();
 
   const handleFilter = (type: TType) => {
     setActiveType(type === activeType ? null : type);

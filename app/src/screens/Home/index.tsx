@@ -5,7 +5,7 @@ import CartButton from '@/components/CartButton';
 import DefaultLayout from '@/components/DefaultLayout';
 import Location from '@/components/Location';
 import Typography from '@/components/Typography';
-import FilterCoffeeProvider from '@/contexts/filterCoffee';
+import CoffeeListProvider from '@/contexts/coffeeList';
 import theme from '@/styles/theme';
 
 import Carousel from './components/Carousel';
@@ -23,7 +23,7 @@ function Home() {
         backgroundColor={theme.colors.neutral[100]}
         style="light"
       />
-      <FilterCoffeeProvider>
+      <CoffeeListProvider>
         <Background>
           <ScrollView
             showsVerticalScrollIndicator={false}
@@ -45,7 +45,7 @@ function Home() {
             <List />
           </ScrollView>
         </Background>
-      </FilterCoffeeProvider>
+      </CoffeeListProvider>
     </DefaultLayout>
   );
 }
