@@ -12,7 +12,7 @@ export const Coffee = styled(View)`
 export const Wrapper = styled(View)`
   height: 120%;
   position: absolute;
-  bottom: -20%;
+  bottom: -15%;
   align-items: center;
   justify-content: center;
   flex: 1;
