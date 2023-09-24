@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
-import { Images } from '@/assets';
 import BackButton from '@/components/BackButton';
 import Button from '@/components/Button';
 import CartButton from '@/components/CartButton';
@@ -13,17 +12,16 @@ import Typography from '@/components/Typography';
 import theme from '@/styles/theme';
 import { Size } from '@/types/size';
 
+import CoffeeImage from './CoffeeImage';
 import Quantity from './Quantity';
 import SizeButton from './SizeButton';
 
 import {
   Add,
-  Coffee,
   Header,
   Info,
   Main,
   Options,
-  Photo,
   Price,
   PrincipalInfoWrapper,
   Sizes,
@@ -93,9 +91,7 @@ function CoffeeDetails() {
             {description}
           </Typography>
         </Info>
-        <Coffee>
-          <Photo source={Images.Coffee} />
-        </Coffee>
+        <CoffeeImage />
       </Main>
       <Options>
         <Typography size="large" type="text" color="neutral" variation={400}>

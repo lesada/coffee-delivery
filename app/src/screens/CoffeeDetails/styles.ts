@@ -1,4 +1,4 @@
-import { Image, View } from 'react-native';
+import { View } from 'react-native';
 import { styled } from 'styled-components';
 
 export const Header = styled(View)`
@@ -39,19 +39,6 @@ export const PrincipalInfoWrapper = styled(View)`
 export const Price = styled(View)`
   flex-direction: row;
   align-items: center;
-`;
-
-export const Coffee = styled(View)`
-  align-items: center;
-  flex: 1;
-`;
-
-export const Photo = styled(Image)`
-  bottom: -17.5%;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 295/260;
-  min-width: 180px;
 `;
 
 export const Options = styled(View)`
