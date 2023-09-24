@@ -16,9 +16,17 @@ import { TType } from '@/types/type';
 
 type CoffeeContextType = {
   loading: boolean;
-  data: TCoffee[] | null;
-  setData: React.Dispatch<React.SetStateAction<TCoffee[] | null>>;
   types: TType[] | null;
+
+  data: TCoffee[] | null;
+  filteredData: TCoffee[] | null;
+  setFilteredData: React.Dispatch<React.SetStateAction<TCoffee[] | null>>;
+
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+
+  activeType: TType | null;
+  setActiveType: React.Dispatch<React.SetStateAction<TType | null>>;
 };
 
 const CoffeeListContext = createContext<CoffeeContextType>(
@@ -28,7 +36,11 @@ const CoffeeListContext = createContext<CoffeeContextType>(
 function CoffeeListProvider({ children }: PropsWithChildren) {
   const [types, setTypes] = useState<TType[] | null>(null);
   const [loading, setLoading] = useState(true);
+
   const [data, setData] = useState<TCoffee[] | null>(null);
+  const [filteredData, setFilteredData] = useState<TCoffee[] | null>(null);
+  const [search, setSearch] = useState('');
+  const [activeType, setActiveType] = useState<TType | null>(null);
 
   const getCoffeeIcon = (title: string) => {
     return Images[title.replace(/\s/g, '')] || Images.AmericanoCoffee;
@@ -60,13 +72,45 @@ function CoffeeListProvider({ children }: PropsWithChildren) {
     }
   };
 
+  const filterData = useCallback(
+    (data: TCoffee[]) => {
+      const filterSearch = data.filter((coffee) =>
+        coffee.title.includes(search),
+      );
+      if (activeType) {
+        return filterSearch.filter(
+          (coffee) => coffee.type === activeType.title,
+        );
+      }
+      return filterSearch;
+    },
+    [search, activeType],
+  );
+
   useEffect(() => {
     fetchData();
     getTypes();
   }, [fetchData]);
 
+  useEffect(() => {
+    if (data) setFilteredData(filterData(data));
+    else setFilteredData(null);
+  }, [data, filterData]);
+
   return (
-    <CoffeeListContext.Provider value={{ loading, data, setData, types }}>
+    <CoffeeListContext.Provider
+      value={{
+        loading,
+        types,
+        data,
+        filteredData,
+        setFilteredData,
+        search,
+        setSearch,
+        activeType,
+        setActiveType,
+      }}
+    >
       {children}
     </CoffeeListContext.Provider>
   );

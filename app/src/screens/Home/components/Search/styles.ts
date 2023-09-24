@@ -38,9 +38,9 @@ export const Input = styled(TextInput).attrs(({ theme }) => ({
   cursorColor: theme.colors.neutral[400],
 }))`
   font-size: 14px;
-  line-height: 18px;
   color: ${({ theme }) => theme.colors.neutral[700]};
   font-weight: 400;
 
   font-family: ${({ theme }) => theme.fonts.Roboto};
+  width: 100%;
 `;

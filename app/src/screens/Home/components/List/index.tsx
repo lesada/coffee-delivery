@@ -3,15 +3,13 @@ import React from 'react';
 import Loader from '@/components/Loader';
 import Typography from '@/components/Typography';
 import { useCoffeeList } from '@/contexts/coffeeList';
-import { useFilterCoffee } from '@/contexts/filterCoffee';
 
 import Card from './Card';
 
 import { Container, Wrapper } from './styles';
 
 function List() {
-  const { loading, types } = useCoffeeList();
-  const { filteredData } = useFilterCoffee();
+  const { loading, types, filteredData } = useCoffeeList();
 
   if (loading) return <Loader />;
   if (filteredData?.length === 0)
@@ -46,8 +44,8 @@ function List() {
               </Typography>
 
               {filteredData
-                ?.filter((coffee) => coffee.type === type.title)
                 ?.sort((a, b) => a.title.localeCompare(b.title))
+                .filter((coffee) => coffee.type === type.title)
                 .map((coffee) => <Card key={coffee.id} {...coffee} />)}
             </Wrapper>
           )

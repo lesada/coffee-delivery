@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { Image } from 'react-native';
 
 import { Images } from '@/assets';
-import { useFilterCoffee } from '@/contexts/filterCoffee';
+import { useCoffeeList } from '@/contexts/coffeeList';
 
 import { Container, Icon, Input, Wrapper } from './styles';
 
 function Search() {
   const [isFocused, setIsFocused] = useState(false);
 
-  const { search, setSearch } = useFilterCoffee();
+  const { search, setSearch } = useCoffeeList();
 
   return (
     <Container>

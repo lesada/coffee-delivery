@@ -9,27 +9,33 @@ interface UpdateCoffeeRequest {
 
 export async function CoffeesRoutes(app: FastifyInstance) {
   app.get("/coffees", async (req, res) => {
-    const coffees = await prisma.coffee.findMany({
-      include: {
-        type: true,
-      },
-    });
+    try {
+      const coffees = await prisma.coffee.findMany({
+        include: {
+          type: true,
+          sizes: true,
+        },
+      });
 
-    const formattedCoffees = coffees.map((coffee) => ({
-      id: coffee.id,
-      title: coffee.title,
-      description: coffee.description,
-      price: coffee.price,
-      type: coffee.type.title,
-    }));
+      const formattedCoffees = coffees.map((coffee) => ({
+        id: coffee.id,
+        title: coffee.title,
+        description: coffee.description,
+        price: coffee.price,
+        type: coffee.type.title,
+        sizes: coffee.sizes,
+      }));
 
-    return res.status(200).send(formattedCoffees);
+      return res.status(200).send(formattedCoffees);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send({ error: "Error fetching coffees." });
+    }
   });
 
   app.post("/coffees/new", async (req, res) => {
-    const { title, description, price, typeName } = CreateCoffeeSchema.parse(
-      req.body
-    );
+    const { title, description, price, typeName, sizes } =
+      CreateCoffeeSchema.parse(req.body);
 
     try {
       const existingType = await prisma.type.findUnique({
@@ -50,11 +56,18 @@ export async function CoffeesRoutes(app: FastifyInstance) {
           description,
           price,
           typeId: existingType.id,
+          sizes: {
+            create: sizes,
+          },
+        },
+        include: {
+          sizes: true,
         },
       });
 
       return res.status(201).send(newCoffee);
     } catch (error) {
+      console.log(error);
       return res.status(500).send({ error: "Error creating new coffee." });
     }
   });
@@ -63,7 +76,6 @@ export async function CoffeesRoutes(app: FastifyInstance) {
     const { id } = req.params as UpdateCoffeeRequest;
 
     try {
-      // Obter o café existente no banco de dados
       const existingCoffee = await prisma.coffee.findUnique({
         where: {
           id,
@@ -74,12 +86,10 @@ export async function CoffeesRoutes(app: FastifyInstance) {
         return res.status(404).send({ error: "Coffee not found." });
       }
 
-      // Extrair as propriedades que podem ser atualizadas do corpo da solicitação
       const { title, description, price, typeName } = UpdateCoffeeSchema.parse(
         req.body
       );
 
-      // Verificar se o tipo de café está sendo atualizado
       let typeId = existingCoffee.typeId;
       if (typeName) {
         const existingType = await prisma.type.findUnique({
@@ -97,7 +107,6 @@ export async function CoffeesRoutes(app: FastifyInstance) {
         typeId = existingType.id;
       }
 
-      // Mesclar as propriedades atualizadas com as existentes
       const updatedCoffee = await prisma.coffee.update({
         where: {
           id,
