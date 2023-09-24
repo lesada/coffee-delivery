@@ -47,7 +47,7 @@ function CoffeeDetails() {
     (a, b) => parseInt(a.name) - parseInt(b.name),
   );
 
-  const [activeSize, setActiveSize] = useState(sizesSorted[1]);
+  const [activeSize, setActiveSize] = useState(sizesSorted[0]);
 
   return (
     <DefaultLayout>
