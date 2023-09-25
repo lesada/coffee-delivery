@@ -1,7 +1,5 @@
 # Coffee Delivery
 
-![image](https://user-images.githubusercontent.com/68572174/195881984-b1d6c1e6-77b0-448b-85de-7bc2ea856472.png)
-
 ## 🧪 Technologies
 
 #### Front-End
