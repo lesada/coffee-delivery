@@ -1,9 +1,11 @@
+import { useState } from 'react';
+
 import { Feather } from '@expo/vector-icons';
 import { View } from 'react-native';
 
-import { Images } from '@/assets';
 import Quantity from '@/components/Quantity';
 import Typography from '@/components/Typography';
+import { CardItem } from '@/contexts/cart';
 import theme from '@/styles/theme';
 
 import {
@@ -15,21 +17,29 @@ import {
   Wrapper,
 } from './styles';
 
-function Item() {
+function Item({
+  image,
+  quantity: defaultQuantity,
+  size,
+  title,
+  totalPrice,
+}: CardItem) {
+  const [quantity, setQuantity] = useState(defaultQuantity);
+
   return (
     <Container>
-      <Photo source={Images.AmericanoCoffee} />
+      <Photo source={image} />
       <Wrapper>
         <View>
           <Typography size="large" type="text" color="neutral" variation={100}>
-            Irish Coffee
+            {title}
           </Typography>
           <Typography size="medium" type="text" color="neutral" variation={400}>
-            224ml
+            {size}
           </Typography>
         </View>
         <Action>
-          <Quantity border />
+          <Quantity border quantity={quantity} setQuantity={setQuantity} />
           <DeleteButton>
             <Feather
               name="trash-2"
@@ -47,7 +57,7 @@ function Item() {
           variation={100}
           bold
         >
-          $ 3.50
+          $ {totalPrice.toFixed(2)}
         </Typography>
       </Price>
     </Container>

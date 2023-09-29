@@ -3,7 +3,11 @@ import Typography from '@/components/Typography';
 
 import { Value, Wrapper } from './styles';
 
-function Footer() {
+type FooterProps = {
+  total: number;
+};
+
+function Footer({ total }: FooterProps) {
   return (
     <Wrapper>
       <Value>
@@ -17,7 +21,7 @@ function Footer() {
           variation={200}
           bold
         >
-          $ 9.00
+          $ {total.toFixed(2)}
         </Typography>
       </Value>
       <Button variant="secondary">Confirm order</Button>

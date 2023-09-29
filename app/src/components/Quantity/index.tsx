@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Feather } from '@expo/vector-icons';
 
@@ -7,12 +7,12 @@ import theme from '@/styles/theme';
 import { Container, Number, NumberWrapper, QuantityButton } from './styles';
 
 type QuantityProps = {
+  quantity: number;
+  setQuantity: (value: number) => void;
   border?: boolean;
 };
 
-function Quantity({ border = false }: QuantityProps) {
-  const [quantity, setQuantity] = useState(1);
-
+function Quantity({ quantity, setQuantity, border = false }: QuantityProps) {
   return (
     <Container $border={border}>
       <QuantityButton

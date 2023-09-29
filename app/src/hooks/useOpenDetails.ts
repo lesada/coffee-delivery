@@ -1,24 +1,28 @@
 import { useNavigation } from '@react-navigation/native';
 
+import { TCoffee } from '@/types/coffee';
 import { UseNavigationProp } from '@/types/navigation';
-import { Size } from '@/types/size';
 
 export const useOpenDetails = () => {
   const navigation = useNavigation<UseNavigationProp>();
 
-  const openDetails = (
-    title: string,
-    type: string,
-    description: string,
-    price: string,
-    sizes: Size[],
-  ) => {
+  const openDetails = ({
+    title,
+    description,
+    id,
+    image,
+    price,
+    sizes,
+    type,
+  }: TCoffee) => {
     navigation.navigate('CoffeeDetails', {
       title,
-      type,
       description,
+      id,
+      image,
       price,
       sizes,
+      type,
     });
   };
 

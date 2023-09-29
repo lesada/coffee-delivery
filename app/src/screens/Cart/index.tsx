@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { FlatList } from 'react-native';
 
 import DefaultLayout from '@/components/DefaultLayout';
+import { useCart } from '@/contexts/cart';
 import theme from '@/styles/theme';
 
 import Footer from './Footer';
@@ -11,6 +12,8 @@ import Item from './Item';
 import { Background } from './styles';
 
 function Cart() {
+  const { items } = useCart();
+
   return (
     <DefaultLayout>
       <StatusBar
@@ -21,13 +24,15 @@ function Cart() {
       <Background>
         <Header />
         <FlatList
-          data={[1, 2, 3, 4, 5]}
-          renderItem={() => <Item />}
-          keyExtractor={(item) => String(item)}
+          data={items}
+          renderItem={({ item }) => <Item {...item} />}
+          keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ flexGrow: 1 }}
         />
-        <Footer />
+        <Footer
+          total={items?.reduce((acc, item) => acc + item.totalPrice, 0) || 0}
+        />
       </Background>
     </DefaultLayout>
   );
