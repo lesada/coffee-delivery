@@ -7,13 +7,13 @@ import BackButton from '@/components/BackButton';
 import Button from '@/components/Button';
 import CartButton from '@/components/CartButton';
 import DefaultLayout from '@/components/DefaultLayout';
+import Quantity from '@/components/Quantity';
 import Tag from '@/components/Tag';
 import Typography from '@/components/Typography';
 import theme from '@/styles/theme';
 import { Size } from '@/types/size';
 
 import CoffeeImage from './CoffeeImage';
-import Quantity from './Quantity';
 import SizeButton from './SizeButton';
 
 import {

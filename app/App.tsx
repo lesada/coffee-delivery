@@ -13,6 +13,7 @@ import AnimatedSplash from 'react-native-animated-splash-screen';
 import { ThemeProvider } from 'styled-components';
 
 import SplashScreen from '@/animations/splashScreen';
+import Cart from '@/screens/Cart';
 import CoffeeDetails from '@/screens/CoffeeDetails';
 import Home from '@/screens/Home';
 
@@ -52,10 +53,11 @@ export default function App() {
           <NavigationContainer>
             <Stack.Navigator
               screenOptions={{ headerShown: false }}
-              initialRouteName="Home"
+              initialRouteName="Cart"
             >
               <Stack.Screen name="Home" component={Home} />
               <Stack.Screen name="CoffeeDetails" component={CoffeeDetails} />
+              <Stack.Screen name="Cart" component={Cart} />
             </Stack.Navigator>
           </NavigationContainer>
         </ThemeProvider>
