@@ -5,7 +5,7 @@ import { Wrapper } from './styles';
 function Item() {
   return (
     <Wrapper>
-      <Quantity />
+      <Quantity border />
     </Wrapper>
   );
 }

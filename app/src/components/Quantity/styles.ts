@@ -1,9 +1,16 @@
 import { Text, TouchableOpacity, View } from 'react-native';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled(View)`
+export const Container = styled(View)<{ $border: boolean }>`
   flex-direction: row;
-  flex: 1;
+
+  ${({ $border, theme }) =>
+    $border &&
+    css`
+      border-width: 1px;
+      border-color: ${theme.colors.neutral[700]};
+      border-radius: 6px;
+    `}
 `;
 
 export const NumberWrapper = styled(View)`

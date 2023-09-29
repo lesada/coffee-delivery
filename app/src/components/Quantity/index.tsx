@@ -6,11 +6,15 @@ import theme from '@/styles/theme';
 
 import { Container, Number, NumberWrapper, QuantityButton } from './styles';
 
-function Quantity() {
+type QuantityProps = {
+  border?: boolean;
+};
+
+function Quantity({ border = false }: QuantityProps) {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <Container>
+    <Container $border={border}>
       <QuantityButton
         onPress={() => setQuantity(quantity - 1)}
         disabled={quantity === 1}
