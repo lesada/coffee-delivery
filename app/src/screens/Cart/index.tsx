@@ -26,7 +26,7 @@ function Cart() {
         <FlatList
           data={items}
           renderItem={({ item }) => <Item {...item} />}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id + item.size}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ flexGrow: 1 }}
         />

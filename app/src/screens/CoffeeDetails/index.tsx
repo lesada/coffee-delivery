@@ -56,7 +56,25 @@ function CoffeeDetails() {
         totalPrice: price * activeSize.priceIncreaseRate,
       };
 
-      setItems(items ? [...items, newCoffee] : [newCoffee]);
+      //  check if item already exists in cart, by id and size
+      const itemExists = items?.find(
+        (item) => item.id === id && item.size === activeSize.name,
+      );
+
+      if (itemExists) {
+        const newItems = items?.map((item) => {
+          if (item.id === id && item.size === activeSize.name) {
+            return {
+              ...item,
+              quantity: item.quantity + quantity,
+              totalPrice: item.totalPrice + newCoffee.totalPrice,
+            };
+          }
+          return item;
+        });
+        if (!newItems) return;
+        setItems(newItems);
+      } else setItems(items ? [...items, newCoffee] : [newCoffee]);
     } catch (error) {
       console.log(error);
     } finally {
