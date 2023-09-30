@@ -5,6 +5,7 @@ import DefaultLayout from '@/components/DefaultLayout';
 import { useCart } from '@/contexts/cart';
 import theme from '@/styles/theme';
 
+import EmptyCart from './EmptyCart';
 import Footer from './Footer';
 import Header from './Header';
 import Item from './Item';
@@ -28,14 +29,20 @@ function Cart() {
       />
       <Background>
         <Header />
-        <FlatList
-          data={items}
-          renderItem={({ item }) => <Item {...item} />}
-          keyExtractor={(item) => item.id + item.size}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ flexGrow: 1 }}
-        />
-        <Footer total={getTotal()} />
+        {!items?.length ? (
+          <EmptyCart />
+        ) : (
+          <>
+            <FlatList
+              data={items}
+              renderItem={({ item }) => <Item {...item} />}
+              keyExtractor={(item) => item.id + item.size}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ flexGrow: 1 }}
+            />
+            <Footer total={getTotal()} />
+          </>
+        )}
       </Background>
     </DefaultLayout>
   );
