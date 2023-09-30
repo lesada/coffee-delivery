@@ -5,7 +5,7 @@ import { View } from 'react-native';
 
 import Quantity from '@/components/Quantity';
 import Typography from '@/components/Typography';
-import { CardItem } from '@/contexts/cart';
+import { CardItem, useCart } from '@/contexts/cart';
 import theme from '@/styles/theme';
 
 import {
@@ -25,6 +25,14 @@ function Item({
   totalPrice,
 }: CardItem) {
   const [quantity, setQuantity] = useState(defaultQuantity);
+  const { items, setItems } = useCart();
+
+  const handleDelete = () => {
+    const newItems = items?.filter(
+      (item) => !(item.title === title && item.size === size),
+    );
+    if (newItems) setItems(newItems);
+  };
 
   return (
     <Container>
@@ -40,7 +48,7 @@ function Item({
         </View>
         <Action>
           <Quantity border quantity={quantity} setQuantity={setQuantity} />
-          <DeleteButton>
+          <DeleteButton onPress={handleDelete}>
             <Feather
               name="trash-2"
               size={20}
