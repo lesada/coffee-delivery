@@ -9,7 +9,7 @@ export const Container = styled(View)`
 
 export const Info = styled(View)`
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 `;
 
 export const Wrapper = styled(View)`
