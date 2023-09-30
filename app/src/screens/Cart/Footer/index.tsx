@@ -1,5 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
+
 import Button from '@/components/Button';
 import Typography from '@/components/Typography';
+import { UseNavigationProp } from '@/types/navigation';
 
 import { Value, Wrapper } from './styles';
 
@@ -8,6 +11,8 @@ type FooterProps = {
 };
 
 function Footer({ total }: FooterProps) {
+  const navigation = useNavigation<UseNavigationProp>();
+
   return (
     <Wrapper>
       <Value>
@@ -24,7 +29,9 @@ function Footer({ total }: FooterProps) {
           $ {total.toFixed(2)}
         </Typography>
       </Value>
-      <Button variant="secondary">Confirm order</Button>
+      <Button variant="secondary" onPress={() => navigation.navigate('Finish')}>
+        Confirm order
+      </Button>
     </Wrapper>
   );
 }

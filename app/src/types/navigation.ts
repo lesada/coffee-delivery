@@ -7,6 +7,7 @@ export type RootStackParamList = {
   Home: undefined;
   CoffeeDetails: TCoffee;
   Cart: undefined;
+  Finish: undefined;
 };
 
 export type UseNavigationProp = CompositeNavigationProp<
