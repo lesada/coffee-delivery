@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
@@ -5,6 +7,7 @@ import { Images } from '@/assets';
 import Button from '@/components/Button';
 import DefaultLayout from '@/components/DefaultLayout';
 import Typography from '@/components/Typography';
+import { useCart } from '@/contexts/cart';
 import theme from '@/styles/theme';
 import { UseNavigationProp } from '@/types/navigation';
 
@@ -12,6 +15,14 @@ import { Container, TextWrapper, Wrapper } from './styles';
 
 function Finish() {
   const navigation = useNavigation<UseNavigationProp>();
+
+  const { setItems } = useCart();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setItems([]);
+    }, 3000);
+  }, []);
 
   return (
     <DefaultLayout>

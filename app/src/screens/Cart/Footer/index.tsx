@@ -13,6 +13,10 @@ type FooterProps = {
 function Footer({ total }: FooterProps) {
   const navigation = useNavigation<UseNavigationProp>();
 
+  const confirmOrder = () => {
+    navigation.navigate('Finish');
+  };
+
   return (
     <Wrapper>
       <Value>
@@ -29,7 +33,7 @@ function Footer({ total }: FooterProps) {
           $ {total.toFixed(2)}
         </Typography>
       </Value>
-      <Button variant="secondary" onPress={() => navigation.navigate('Finish')}>
+      <Button variant="secondary" onPress={confirmOrder}>
         Confirm order
       </Button>
     </Wrapper>
