@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Feather } from '@expo/vector-icons';
 import { View } from 'react-native';
 
 import Quantity from '@/components/Quantity';
 import Typography from '@/components/Typography';
-import { CardItem, useCart } from '@/contexts/cart';
+import { useCart } from '@/contexts/cart';
 import theme from '@/styles/theme';
+import { CardItem } from '@/types/cartItem';
 
 import {
   Action,
@@ -22,7 +23,7 @@ function Item({
   quantity: defaultQuantity,
   size,
   title,
-  totalPrice,
+  unitPrice,
 }: CardItem) {
   const [quantity, setQuantity] = useState(defaultQuantity);
   const { items, setItems } = useCart();
@@ -33,6 +34,19 @@ function Item({
     );
     if (newItems) setItems(newItems);
   };
+
+  useEffect(() => {
+    const newItems = items?.map((item) => {
+      if (item.title === title && item.size === size) {
+        return {
+          ...item,
+          quantity,
+        };
+      }
+      return item;
+    });
+    if (newItems) setItems(newItems);
+  }, [quantity]);
 
   return (
     <Container>
@@ -65,7 +79,7 @@ function Item({
           variation={100}
           bold
         >
-          $ {totalPrice.toFixed(2)}
+          $ {(unitPrice * quantity).toFixed(2)}
         </Typography>
       </Price>
     </Container>

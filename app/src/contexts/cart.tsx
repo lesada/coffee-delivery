@@ -1,35 +1,22 @@
 import { PropsWithChildren, createContext, useContext, useState } from 'react';
 
-type CoffeeContextType = {
-  loading: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+import { CardItem } from '@/types/cartItem';
 
+type CoffeeContextType = {
   items: CardItem[] | null;
   setItems: React.Dispatch<React.SetStateAction<CardItem[] | null>>;
 };
 
 const CartContext = createContext<CoffeeContextType>({} as CoffeeContextType);
 
-export type CardItem = {
-  id: string;
-  image: typeof import('*.png');
-  title: string;
-  size: string;
-  quantity: number;
-  totalPrice: number;
-};
-
 function CartProvider({ children }: PropsWithChildren) {
-  const [loading, setLoading] = useState(true);
   const [items, setItems] = useState<CardItem[] | null>(null);
 
   return (
     <CartContext.Provider
       value={{
-        loading,
         items,
         setItems,
-        setLoading,
       }}
     >
       {children}

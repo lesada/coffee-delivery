@@ -14,6 +14,11 @@ import { Background } from './styles';
 function Cart() {
   const { items } = useCart();
 
+  const getTotal = () => {
+    if (!items) return 0;
+    return items.reduce((acc, item) => acc + item.unitPrice * item.quantity, 0);
+  };
+
   return (
     <DefaultLayout>
       <StatusBar
@@ -30,9 +35,7 @@ function Cart() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ flexGrow: 1 }}
         />
-        <Footer
-          total={items?.reduce((acc, item) => acc + item.totalPrice, 0) || 0}
-        />
+        <Footer total={getTotal()} />
       </Background>
     </DefaultLayout>
   );

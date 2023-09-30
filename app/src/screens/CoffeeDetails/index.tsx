@@ -31,7 +31,7 @@ import {
 
 function CoffeeDetails() {
   const route = useRoute();
-  const { items, setItems, setLoading } = useCart();
+  const { items, setItems } = useCart();
 
   const { id, title, type, image, description, price, sizes } =
     route.params as TCoffee;
@@ -45,18 +45,15 @@ function CoffeeDetails() {
 
   const handleAddToCart = () => {
     try {
-      setLoading(true);
-
       const newCoffee = {
         id,
         image,
         title,
         size: activeSize.name,
         quantity: quantity,
-        totalPrice: price * activeSize.priceIncreaseRate,
+        unitPrice: price,
       };
 
-      //  check if item already exists in cart, by id and size
       const itemExists = items?.find(
         (item) => item.id === id && item.size === activeSize.name,
       );
@@ -67,7 +64,6 @@ function CoffeeDetails() {
             return {
               ...item,
               quantity: item.quantity + quantity,
-              totalPrice: item.totalPrice + newCoffee.totalPrice,
             };
           }
           return item;
@@ -77,8 +73,6 @@ function CoffeeDetails() {
       } else setItems(items ? [...items, newCoffee] : [newCoffee]);
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false);
     }
   };
 
