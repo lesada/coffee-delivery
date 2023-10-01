@@ -7,13 +7,14 @@ import BackButton from '@/components/BackButton';
 import Button from '@/components/Button';
 import CartButton from '@/components/CartButton';
 import DefaultLayout from '@/components/DefaultLayout';
+import Quantity from '@/components/Quantity';
 import Tag from '@/components/Tag';
 import Typography from '@/components/Typography';
+import { useCart } from '@/contexts/cart';
 import theme from '@/styles/theme';
-import { Size } from '@/types/size';
+import { TCoffee } from '@/types/coffee';
 
 import CoffeeImage from './CoffeeImage';
-import Quantity from './Quantity';
 import SizeButton from './SizeButton';
 
 import {
@@ -28,24 +29,52 @@ import {
   TitleWrapper,
 } from './styles';
 
-type CoffeeDetailsParams = {
-  title: string;
-  type: string;
-  description: string;
-  price: number;
-  sizes: Size[];
-};
-
 function CoffeeDetails() {
   const route = useRoute();
-  const { title, type, description, price, sizes } =
-    route.params as CoffeeDetailsParams;
+  const { items, setItems } = useCart();
+
+  const { id, title, type, image, description, price, sizes } =
+    route.params as TCoffee;
 
   const sizesSorted = sizes?.sort(
     (a, b) => parseInt(a.name) - parseInt(b.name),
   );
 
   const [activeSize, setActiveSize] = useState(sizesSorted[0]);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddToCart = () => {
+    try {
+      const newCoffee = {
+        id,
+        image,
+        title,
+        size: activeSize.name,
+        quantity: quantity,
+        unitPrice: price,
+      };
+
+      const itemExists = items?.find(
+        (item) => item.id === id && item.size === activeSize.name,
+      );
+
+      if (itemExists) {
+        const newItems = items?.map((item) => {
+          if (item.id === id && item.size === activeSize.name) {
+            return {
+              ...item,
+              quantity: item.quantity + quantity,
+            };
+          }
+          return item;
+        });
+        if (!newItems) return;
+        setItems(newItems);
+      } else setItems(items ? [...items, newCoffee] : [newCoffee]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <DefaultLayout>
@@ -109,8 +138,8 @@ function CoffeeDetails() {
           ))}
         </Sizes>
         <Add>
-          <Quantity />
-          <Button>Add to cart</Button>
+          <Quantity quantity={quantity} setQuantity={setQuantity} />
+          <Button onPress={handleAddToCart}>Add to cart</Button>
         </Add>
       </Options>
     </DefaultLayout>

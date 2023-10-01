@@ -13,7 +13,10 @@ import AnimatedSplash from 'react-native-animated-splash-screen';
 import { ThemeProvider } from 'styled-components';
 
 import SplashScreen from '@/animations/splashScreen';
+import CartProvider from '@/contexts/cart';
+import Cart from '@/screens/Cart';
 import CoffeeDetails from '@/screens/CoffeeDetails';
+import Finish from '@/screens/Finish';
 import Home from '@/screens/Home';
 
 import theme from './src/styles/theme';
@@ -48,16 +51,20 @@ export default function App() {
     >
       {fontsLoaded ? (
         <ThemeProvider theme={theme}>
-          <StatusBar translucent />
-          <NavigationContainer>
-            <Stack.Navigator
-              screenOptions={{ headerShown: false }}
-              initialRouteName="Home"
-            >
-              <Stack.Screen name="Home" component={Home} />
-              <Stack.Screen name="CoffeeDetails" component={CoffeeDetails} />
-            </Stack.Navigator>
-          </NavigationContainer>
+          <CartProvider>
+            <StatusBar translucent />
+            <NavigationContainer>
+              <Stack.Navigator
+                screenOptions={{ headerShown: false }}
+                initialRouteName="Home"
+              >
+                <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="CoffeeDetails" component={CoffeeDetails} />
+                <Stack.Screen name="Cart" component={Cart} />
+                <Stack.Screen name="Finish" component={Finish} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </CartProvider>
         </ThemeProvider>
       ) : null}
     </AnimatedSplash>

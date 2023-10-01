@@ -7,12 +7,14 @@ import { TCoffee } from '@/types/coffee';
 
 import { Container, Info, Photo, Price } from './styles';
 
-function Item({ title, type, description, price, image, sizes }: TCoffee) {
+function Item({ id, title, type, description, price, image, sizes }: TCoffee) {
   const openDetails = useOpenDetails();
 
   return (
     <TouchableWithoutFeedback
-      onPress={() => openDetails(title, type, description, price, sizes)}
+      onPress={() =>
+        openDetails({ id, title, type, description, price, sizes, image })
+      }
     >
       <Container>
         <Photo source={image} />

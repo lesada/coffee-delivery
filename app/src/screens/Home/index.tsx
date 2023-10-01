@@ -8,10 +8,10 @@ import Typography from '@/components/Typography';
 import CoffeeListProvider from '@/contexts/coffeeList';
 import theme from '@/styles/theme';
 
-import Carousel from './components/Carousel';
-import List from './components/List';
-import Navigation from './components/Navigation';
-import Search from './components/Search';
+import Carousel from './Carousel';
+import List from './List';
+import Navigation from './Navigation';
+import Search from './Search';
 
 import { Background, Header, Wrapper } from './styles';
 

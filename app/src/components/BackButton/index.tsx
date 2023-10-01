@@ -3,7 +3,11 @@ import { TouchableOpacity } from 'react-native';
 
 import { Icon } from './styles';
 
-function BackButton() {
+type BackButtonProps = {
+  variant?: 'light' | 'dark';
+};
+
+function BackButton({ variant = 'light' }: BackButtonProps) {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -11,7 +15,7 @@ function BackButton() {
         navigation.goBack();
       }}
     >
-      <Icon name="arrow-left" />
+      <Icon name="arrow-left" $variant={variant} />
     </TouchableOpacity>
   );
 }

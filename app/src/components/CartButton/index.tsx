@@ -1,11 +1,19 @@
+import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
 
-import { Cart } from './styles';
+import { useCart } from '@/contexts/cart';
+import { UseNavigationProp } from '@/types/navigation';
+
+import { Cart, Number } from './styles';
 
 function CartButton() {
+  const { items } = useCart();
+  const navigation = useNavigation<UseNavigationProp>();
+
   return (
-    <TouchableOpacity>
-      <Cart name="shopping-cart" />
+    <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+      {items && items.length > 0 && <Number>{items.length}</Number>}
+      <Cart name="shopping-cart" $hasItems={!!items?.length} />
     </TouchableOpacity>
   );
 }
