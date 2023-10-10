@@ -10,12 +10,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CardItem } from '@/types/cartItem';
 
-type CoffeeContextType = {
+type CartContextType = {
   items: CardItem[] | null;
   setItems: React.Dispatch<React.SetStateAction<CardItem[] | null>>;
 };
 
-const CartContext = createContext<CoffeeContextType>({} as CoffeeContextType);
+const CartContext = createContext<CartContextType>({} as CartContextType);
 
 function CartProvider({ children }: PropsWithChildren) {
   const [items, setItems] = useState<CardItem[] | null>(null);

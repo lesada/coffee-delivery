@@ -11,6 +11,7 @@ import Quantity from '@/components/Quantity';
 import Tag from '@/components/Tag';
 import Typography from '@/components/Typography';
 import { useCart } from '@/contexts/cart';
+import { useToast } from '@/contexts/toast';
 import theme from '@/styles/theme';
 import { TCoffee } from '@/types/coffee';
 
@@ -32,6 +33,7 @@ import {
 function CoffeeDetails() {
   const route = useRoute();
   const { items, setItems } = useCart();
+  const { setToast } = useToast();
 
   const { id, title, type, image, description, price, sizes } =
     route.params as TCoffee;
@@ -45,6 +47,12 @@ function CoffeeDetails() {
 
   const handleAddToCart = () => {
     try {
+      setToast({
+        showToast: true,
+        quantity: quantity.toString(),
+        text: `${quantity} ${title} with ${activeSize.name} added to cart`,
+      });
+
       const newCoffee = {
         id,
         image,
