@@ -11,6 +11,7 @@ export interface TypographyProps extends PropsWithChildren {
   color?: keyof typeof colors;
   variation?: keyof (typeof colors)['neutral'];
   bold?: boolean;
+  uppercase?: boolean;
 }
 
 function Typography({ children, ...rest }: TypographyProps) {

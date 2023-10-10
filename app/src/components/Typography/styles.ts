@@ -39,4 +39,6 @@ export const Container = styled(Text)<TypographyProps>`
   font-size: ${({ type, size }) => types[type][size]}px;
   line-height: ${({ type, size }) => types[type][size] * 1.3}px;
   text-align: ${({ align }) => align || 'left'};
+
+  ${({ uppercase }) => uppercase && 'text-transform: uppercase;'}
 `;

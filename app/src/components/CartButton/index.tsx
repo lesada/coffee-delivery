@@ -12,7 +12,9 @@ function CartButton() {
 
   return (
     <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-      {items && items.length > 0 && <Number>{items.length}</Number>}
+      {items && items.length > 0 && (
+        <Number>{items.reduce((acc, item) => acc + item.quantity, 0)}</Number>
+      )}
       <Cart name="shopping-cart" $hasItems={!!items?.length} />
     </TouchableOpacity>
   );
